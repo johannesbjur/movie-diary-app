@@ -19,6 +19,8 @@
 		8CD1C05423D0892700CCF6A4 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CD1C05023D0892700CCF6A4 /* Montserrat-SemiBoldItalic.ttf */; };
 		8CD1C05523D0892700CCF6A4 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CD1C05123D0892700CCF6A4 /* Montserrat-Bold.ttf */; };
 		8CD1C05623D0892700CCF6A4 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CD1C05223D0892700CCF6A4 /* Montserrat-SemiBold.ttf */; };
+		8CD1C05823D08CD700CCF6A4 /* MovieItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1C05723D08CD700CCF6A4 /* MovieItem.swift */; };
+		8CD1C05C23D09E5600CCF6A4 /* CreateItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1C05B23D09E5600CCF6A4 /* CreateItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		8CD1C05023D0892700CCF6A4 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		8CD1C05123D0892700CCF6A4 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		8CD1C05223D0892700CCF6A4 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		8CD1C05723D08CD700CCF6A4 /* MovieItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieItem.swift; sourceTree = "<group>"; };
+		8CD1C05B23D09E5600CCF6A4 /* CreateItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 		8CD1C00723D0833200CCF6A4 = {
 			isa = PBXGroup;
 			children = (
+				8CD1C05B23D09E5600CCF6A4 /* CreateItemViewController.swift */,
 				8CD1C01223D0833200CCF6A4 /* MovieDiary */,
 				8CD1C02923D0833300CCF6A4 /* MovieDiaryTests */,
 				8CD1C03423D0833300CCF6A4 /* MovieDiaryUITests */,
@@ -110,6 +115,7 @@
 				8CD1C01323D0833200CCF6A4 /* AppDelegate.swift */,
 				8CD1C01523D0833200CCF6A4 /* SceneDelegate.swift */,
 				8CD1C01723D0833200CCF6A4 /* ViewController.swift */,
+				8CD1C05723D08CD700CCF6A4 /* MovieItem.swift */,
 				8CD1C01923D0833200CCF6A4 /* Main.storyboard */,
 				8CD1C01C23D0833300CCF6A4 /* Assets.xcassets */,
 				8CD1C01E23D0833300CCF6A4 /* LaunchScreen.storyboard */,
@@ -283,7 +289,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD1C05C23D09E5600CCF6A4 /* CreateItemViewController.swift in Sources */,
 				8CD1C01823D0833200CCF6A4 /* ViewController.swift in Sources */,
+				8CD1C05823D08CD700CCF6A4 /* MovieItem.swift in Sources */,
 				8CD1C01423D0833200CCF6A4 /* AppDelegate.swift in Sources */,
 				8CD1C01623D0833200CCF6A4 /* SceneDelegate.swift in Sources */,
 			);
