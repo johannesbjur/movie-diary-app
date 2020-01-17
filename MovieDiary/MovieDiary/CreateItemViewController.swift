@@ -14,7 +14,11 @@ class CreateItemViewController: UIViewController {
     @IBOutlet weak var commentInput: UITextField!
     @IBOutlet weak var backBtutton: UIButton!
     
+    @IBOutlet var starsArray: [UIButton]!
+    
     let segToHomeId = "segToHome"
+    
+    var rating_value: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +33,11 @@ class CreateItemViewController: UIViewController {
 
     @IBAction func savePressed(_ sender: UIButton) {
         
-        if let presenter = presentingViewController as? ViewController,
+        if  let presenter = presentingViewController as? ViewController,
             let title = titleInput.text,
             let comment = commentInput.text {
-
-            // TODO change to input value
-            let rating: Int = 1
             
-            let movie = Movie( title: title, comment: comment, rating: rating )
+            let movie = Movie( title: title, comment: comment, rating: rating_value )
             
             presenter.movies.append( movie )
         }
@@ -45,6 +46,20 @@ class CreateItemViewController: UIViewController {
     }
     
     
+    @IBAction func starPressed(_ sender: UIButton) {
+        
+        rating_value = sender.tag
+        
+        for star in starsArray {
+            
+            if star.tag <= sender.tag {
+                star.setBackgroundImage(UIImage.init(named: "full_star_white"), for: .normal)
+            }
+            else {
+                star.setBackgroundImage(UIImage.init(named: "empty_star_white"), for: .normal)
+            }
+        }
+    }
     
     
     func setStyle( textInput: UITextField ) {

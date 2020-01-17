@@ -26,6 +26,7 @@ class ViewController: UIViewController {
             print("---")
             print("title: ", movie.title)
             print("comment: ", movie.comment)
+            print("rating: ", movie.rating)
         }
         
     }

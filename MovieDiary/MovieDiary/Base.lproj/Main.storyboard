@@ -132,54 +132,69 @@
                                     <action selector="savePressed:" destination="B0j-lq-g5v" eventType="touchUpInside" id="JD0-DL-8d6"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJv-Qs-Iwo">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJv-Qs-Iwo" userLabel="Rating Label">
                                 <rect key="frame" x="88" y="524" width="82.5" height="29.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fPB-6r-WNK">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fPB-6r-WNK" userLabel="Rating Stars">
                                 <rect key="frame" x="88" y="573.5" width="257" height="42"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxX-ma-kOY">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxX-ma-kOY">
                                         <rect key="frame" x="0.0" y="0.0" width="45" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="45" id="79d-1R-Zfd"/>
                                             <constraint firstAttribute="height" constant="42" id="gQo-ki-3qy"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="empty_star_white"/>
+                                        <connections>
+                                            <action selector="starPressed:" destination="B0j-lq-g5v" eventType="touchUpInside" id="Wnv-49-Lgl"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lq8-MI-vfv">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lq8-MI-vfv">
                                         <rect key="frame" x="53" y="0.0" width="45" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="45" id="HK8-ZJ-Rj9"/>
                                             <constraint firstAttribute="height" constant="42" id="XQ7-dr-z9Q"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="empty_star_white"/>
+                                        <connections>
+                                            <action selector="starPressed:" destination="B0j-lq-g5v" eventType="touchUpInside" id="Ndh-vz-73z"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PxH-z1-Bub">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PxH-z1-Bub">
                                         <rect key="frame" x="106" y="0.0" width="45" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="45" id="R0f-tp-nTl"/>
                                             <constraint firstAttribute="height" constant="42" id="S0u-Cg-uRT"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="empty_star_white"/>
+                                        <connections>
+                                            <action selector="starPressed:" destination="B0j-lq-g5v" eventType="touchUpInside" id="N7e-5u-sOd"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ed7-5D-7Tt">
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ed7-5D-7Tt">
                                         <rect key="frame" x="159" y="0.0" width="45" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="45" id="GFK-nk-Rww"/>
                                             <constraint firstAttribute="height" constant="42" id="Kn7-5v-Ml3"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="empty_star_white"/>
+                                        <connections>
+                                            <action selector="starPressed:" destination="B0j-lq-g5v" eventType="touchUpInside" id="0X7-Vm-mFE"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xqi-rO-YoH">
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xqi-rO-YoH">
                                         <rect key="frame" x="212" y="0.0" width="45" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="45" id="Bcz-sz-ukW"/>
                                             <constraint firstAttribute="height" constant="42" id="xcU-0w-cN3"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="empty_star_white"/>
+                                        <connections>
+                                            <action selector="starPressed:" destination="B0j-lq-g5v" eventType="touchUpInside" id="kyw-fg-bHy"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -207,6 +222,11 @@
                         <outlet property="backBtutton" destination="euS-ZC-k4m" id="yUa-qo-dpk"/>
                         <outlet property="commentInput" destination="mYC-8l-46x" id="5cz-U8-Mde"/>
                         <outlet property="titleInput" destination="NPu-V3-5j6" id="j0L-Bj-zZF"/>
+                        <outletCollection property="starsArray" destination="KxX-ma-kOY" collectionClass="NSMutableArray" id="gzP-N3-dj0"/>
+                        <outletCollection property="starsArray" destination="lq8-MI-vfv" collectionClass="NSMutableArray" id="HAx-zA-4o6"/>
+                        <outletCollection property="starsArray" destination="PxH-z1-Bub" collectionClass="NSMutableArray" id="oau-a6-ovW"/>
+                        <outletCollection property="starsArray" destination="Ed7-5D-7Tt" collectionClass="NSMutableArray" id="FOv-vC-K0n"/>
+                        <outletCollection property="starsArray" destination="Xqi-rO-YoH" collectionClass="NSMutableArray" id="YyK-Fv-Cie"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kvc-M1-xPg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
