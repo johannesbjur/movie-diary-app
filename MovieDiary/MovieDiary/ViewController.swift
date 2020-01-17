@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     let segToAddItemId = "segToAddItem"
+    var movies: [Movie] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,12 +19,17 @@ class ViewController: UIViewController {
         setBGroundToGradient()
         
     }
-
-    @IBAction func addItemPressed(_ sender: UIButton) {
+    
+    override func viewDidAppear(_ animated: Bool) {
         
-        performSegue( withIdentifier: segToAddItemId, sender: self )
+        for movie in movies {
+            print("---")
+            print("title: ", movie.title)
+            print("comment: ", movie.comment)
+        }
         
     }
+
     
     func setBGroundToGradient() {
         
@@ -39,6 +45,8 @@ class ViewController: UIViewController {
         view.layer.addSublayer( gradientBackground )
         view.layer.insertSublayer( gradientBackground, at: 0 )
     }
+    
+    @IBAction func unwindToHome( segue: UIStoryboardSegue ) {}
     
 }
 

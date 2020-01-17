@@ -12,6 +12,7 @@ class CreateItemViewController: UIViewController {
 
     @IBOutlet weak var titleInput: UITextField!
     @IBOutlet weak var commentInput: UITextField!
+    @IBOutlet weak var backBtutton: UIButton!
     
     let segToHomeId = "segToHome"
     
@@ -25,11 +26,26 @@ class CreateItemViewController: UIViewController {
         
         
     }
-    
-    @IBAction func backArrowPressed(_ sender: UIButton) {
+
+    @IBAction func savePressed(_ sender: UIButton) {
         
-        performSegue( withIdentifier: segToHomeId, sender: self )
+        if let presenter = presentingViewController as? ViewController,
+            let title = titleInput.text,
+            let comment = commentInput.text {
+
+            // TODO change to input value
+            let rating: Int = 1
+            
+            let movie = Movie( title: title, comment: comment, rating: rating )
+            
+            presenter.movies.append( movie )
+        }
+        
+        dismiss( animated: true, completion: nil )
     }
+    
+    
+    
     
     func setStyle( textInput: UITextField ) {
         
