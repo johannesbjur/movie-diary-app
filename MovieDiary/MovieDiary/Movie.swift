@@ -1,0 +1,31 @@
+//
+//  Movie.swift
+//  MovieDiary
+//
+//  Created by Johannes Bjurströmer on 2020-01-17.
+//  Copyright © 2020 Johannes Bjurströmer. All rights reserved.
+//
+
+import Foundation
+
+class Movie {
+    
+    let title: String
+    let comment: String
+    let rating: Int
+    
+    init( title: String, comment: String, rating: Int ) {
+        
+        self.title      = title
+        self.comment    = comment
+        self.rating     = rating
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+}
