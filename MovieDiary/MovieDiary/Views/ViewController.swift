@@ -11,14 +11,14 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    
+
     let segToAddItemId = "segToAddItem"
     var movies: [Movie] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setBGroundToGradient()
+        view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -43,26 +43,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.reloadData()
     }
     
-    
-    func setBGroundToGradient() {
-        
-        let gradientBackground = CAGradientLayer()
-        
-//        gradientBackground.colors = [
-//            UIColor.init( red: 204.0/255.0, green: 43.0/255.0, blue: 94.0/255.0, alpha: 1 ).cgColor,
-//            UIColor.init( red: 117.0/255.0, green: 58.0/255.0, blue: 136.0/255.0, alpha: 1 ).cgColor
-//        ]
-        gradientBackground.colors = [
-            Colors.pink,
-            Colors.purple
-        ]
-        
-        
-        gradientBackground.frame = view.frame
-        
-        view.layer.addSublayer( gradientBackground )
-        view.layer.insertSublayer( gradientBackground, at: 0 )
-    }
+    @IBAction func unwindToHome( segue: UIStoryboardSegue ) {}
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,9 +60,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return movieCell
     }
-    
-    
-    @IBAction func unwindToHome( segue: UIStoryboardSegue ) {}
     
 }
 
