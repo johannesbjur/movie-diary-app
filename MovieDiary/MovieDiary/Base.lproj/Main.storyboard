@@ -54,7 +54,7 @@
                                 <rect key="frame" x="0.0" y="171" width="414" height="691"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="180" id="Wfh-E6-OG9" customClass="MovieCell" customModule="MovieDiary" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" focusStyle="custom" rowHeight="180" id="Wfh-E6-OG9" customClass="MovieCell" customModule="MovieDiary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wfh-E6-OG9" id="9zR-39-8Ap">
@@ -76,10 +76,10 @@
                                                             </attributedString>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="EAI-ep-66N">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="EAI-ep-66N" userLabel="Rating Stars">
                                                             <rect key="frame" x="40" y="61.5" width="142" height="25"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWa-bP-YJ4">
+                                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWa-bP-YJ4">
                                                                     <rect key="frame" x="0.0" y="0.0" width="26" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="26" id="8GT-Up-KMT"/>
@@ -87,7 +87,7 @@
                                                                     </constraints>
                                                                     <state key="normal" backgroundImage="empty_star_colored"/>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdI-O8-quc">
+                                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdI-O8-quc">
                                                                     <rect key="frame" x="29" y="0.0" width="26" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="25" id="0U4-su-3d7"/>
@@ -95,7 +95,7 @@
                                                                     </constraints>
                                                                     <state key="normal" backgroundImage="empty_star_colored"/>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rJ-2r-QR8">
+                                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rJ-2r-QR8">
                                                                     <rect key="frame" x="58" y="0.0" width="26" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="25" id="Sfk-se-DK9"/>
@@ -103,7 +103,7 @@
                                                                     </constraints>
                                                                     <state key="normal" backgroundImage="empty_star_colored"/>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dg4-NX-Hqd">
+                                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dg4-NX-Hqd">
                                                                     <rect key="frame" x="87" y="0.0" width="26" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="25" id="E4v-Y7-ust"/>
@@ -111,7 +111,7 @@
                                                                     </constraints>
                                                                     <state key="normal" backgroundImage="empty_star_colored"/>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ukr-Jf-bqk">
+                                                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ukr-Jf-bqk">
                                                                     <rect key="frame" x="116" y="0.0" width="26" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="25" id="B80-C8-c9y"/>
@@ -167,7 +167,11 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="movieTitle" destination="GZ1-vv-Vfj" id="US3-mD-X2U"/>
-                                            <outlet property="ratingStars" destination="EAI-ep-66N" id="2kK-kc-2xL"/>
+                                            <outletCollection property="ratingStars" destination="iWa-bP-YJ4" collectionClass="NSMutableArray" id="bMT-Zv-LJy"/>
+                                            <outletCollection property="ratingStars" destination="HdI-O8-quc" collectionClass="NSMutableArray" id="rYt-FX-DJq"/>
+                                            <outletCollection property="ratingStars" destination="8rJ-2r-QR8" collectionClass="NSMutableArray" id="fZu-e6-msT"/>
+                                            <outletCollection property="ratingStars" destination="Dg4-NX-Hqd" collectionClass="NSMutableArray" id="9m1-98-Cjc"/>
+                                            <outletCollection property="ratingStars" destination="ukr-Jf-bqk" collectionClass="NSMutableArray" id="h5c-BA-HkC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

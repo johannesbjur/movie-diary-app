@@ -25,7 +25,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.rowHeight = 180;
 
 //        Test Object
-//        let mov = Movie(title: "aa", comment: "bb", rating: 1)
+//        let mov = Movie(title: "aa", comment: "bb", rating: 3)
 //        movies.append(mov)
         
     }
@@ -68,11 +68,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let movie = movies[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell") as! MovieCell
+        let movieCell = tableView.dequeueReusableCell( withIdentifier: "MovieCell" ) as! MovieCell
         
-        cell.movieTitle.text = movie.title
+        movieCell.set( movie: movie )
         
-        return cell
+        return movieCell
     }
     
     

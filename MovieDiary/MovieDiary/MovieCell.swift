@@ -11,6 +11,27 @@ import UIKit
 class MovieCell: UITableViewCell {
 
     @IBOutlet weak var movieTitle: UILabel!
-    @IBOutlet weak var ratingStars: UIStackView!
+    @IBOutlet var ratingStars: [UIButton]!
+
+    
+    func set( movie: Movie ) {
+        
+        self.movieTitle.text = movie.title
+        
+        
+        for star in ratingStars {
+            
+            if star.tag <= movie.rating {
+                
+                star.setBackgroundImage( UIImage.init( named: "full_star_colored" ), for: .normal )
+            }
+            else {
+                
+                star.setBackgroundImage( UIImage.init( named: "empty_star_colored" ), for: .normal )
+            }
+        }
+    }
+    
+    
     
 }
