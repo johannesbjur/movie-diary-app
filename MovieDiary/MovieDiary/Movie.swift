@@ -13,12 +13,14 @@ class Movie {
     let title: String
     let comment: String
     let rating: Int
+    let date: Date
     
     init( title: String, comment: String, rating: Int ) {
         
         self.title      = title
         self.comment    = comment
         self.rating     = rating
+        self.date       = Date()
     }
     
     
