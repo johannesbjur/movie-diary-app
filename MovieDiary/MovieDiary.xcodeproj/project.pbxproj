@@ -12,6 +12,7 @@
 		8C72AF2323D4751A00AE1FBC /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C72AF1F23D4751A00AE1FBC /* Montserrat-ExtraBold.ttf */; };
 		8C72AF2423D4751A00AE1FBC /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C72AF2023D4751A00AE1FBC /* Montserrat-Bold.ttf */; };
 		8C72AF2523D4751A00AE1FBC /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C72AF2123D4751A00AE1FBC /* Montserrat-SemiBoldItalic.ttf */; };
+		8C72AF2723D47C2500AE1FBC /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C72AF2623D47C2500AE1FBC /* MovieCell.swift */; };
 		8CD1C01423D0833200CCF6A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1C01323D0833200CCF6A4 /* AppDelegate.swift */; };
 		8CD1C01623D0833200CCF6A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1C01523D0833200CCF6A4 /* SceneDelegate.swift */; };
 		8CD1C01823D0833200CCF6A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1C01723D0833200CCF6A4 /* ViewController.swift */; };
@@ -46,6 +47,7 @@
 		8C72AF1F23D4751A00AE1FBC /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraBold.ttf"; path = "../../../../../Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		8C72AF2023D4751A00AE1FBC /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.ttf"; path = "../../../../../Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		8C72AF2123D4751A00AE1FBC /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-SemiBoldItalic.ttf"; path = "../../../../../Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		8C72AF2623D47C2500AE1FBC /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		8CD1C01023D0833200CCF6A4 /* MovieDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD1C01323D0833200CCF6A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CD1C01523D0833200CCF6A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C72AF2823D47C6100AE1FBC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8CD1C01723D0833200CCF6A4 /* ViewController.swift */,
+				8CD1C05B23D09E5600CCF6A4 /* CreateItemViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8CD1C00723D0833200CCF6A4 = {
 			isa = PBXGroup;
 			children = (
@@ -111,10 +122,10 @@
 		8CD1C01223D0833200CCF6A4 /* MovieDiary */ = {
 			isa = PBXGroup;
 			children = (
+				8C72AF2823D47C6100AE1FBC /* Views */,
 				8CD1C01323D0833200CCF6A4 /* AppDelegate.swift */,
 				8CD1C01523D0833200CCF6A4 /* SceneDelegate.swift */,
-				8CD1C01723D0833200CCF6A4 /* ViewController.swift */,
-				8CD1C05B23D09E5600CCF6A4 /* CreateItemViewController.swift */,
+				8C72AF2623D47C2500AE1FBC /* MovieCell.swift */,
 				8C5CC8C723D1D9D90011DB51 /* Movie.swift */,
 				8CD1C01923D0833200CCF6A4 /* Main.storyboard */,
 				8CD1C01C23D0833300CCF6A4 /* Assets.xcassets */,
@@ -291,6 +302,7 @@
 			files = (
 				8CD1C05C23D09E5600CCF6A4 /* CreateItemViewController.swift in Sources */,
 				8CD1C01823D0833200CCF6A4 /* ViewController.swift in Sources */,
+				8C72AF2723D47C2500AE1FBC /* MovieCell.swift in Sources */,
 				8CD1C01423D0833200CCF6A4 /* AppDelegate.swift in Sources */,
 				8CD1C01623D0833200CCF6A4 /* SceneDelegate.swift in Sources */,
 				8C5CC8C823D1D9D90011DB51 /* Movie.swift in Sources */,

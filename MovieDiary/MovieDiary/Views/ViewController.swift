@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
     
     let segToAddItemId = "segToAddItem"
     var movies: [Movie] = []
@@ -17,6 +19,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         setBGroundToGradient()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 180;
+
+//        Test Object
+//        let mov = Movie(title: "aa", comment: "bb", rating: 1)
+//        movies.append(mov)
         
     }
     
@@ -30,6 +40,7 @@ class ViewController: UIViewController {
             print("Date: ", movie.date)
         }
         
+        self.tableView.reloadData()
     }
 
     
@@ -47,6 +58,23 @@ class ViewController: UIViewController {
         view.layer.addSublayer( gradientBackground )
         view.layer.insertSublayer( gradientBackground, at: 0 )
     }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return movies.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let movie = movies[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell") as! MovieCell
+        
+        cell.movieTitle.text = movie.title
+        
+        return cell
+    }
+    
     
     @IBAction func unwindToHome( segue: UIStoryboardSegue ) {}
     
