@@ -14,10 +14,9 @@ class MovieCell: UITableViewCell {
     @IBOutlet var ratingStars: [UIButton]!
 
     
-    func set( movie: Movie ) {
+    func setData( withMovie movie: Movie ) {
         
         self.movieTitle.text = movie.title
-        
         
         for star in ratingStars {
             
