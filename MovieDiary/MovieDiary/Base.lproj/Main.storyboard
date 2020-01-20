@@ -372,7 +372,86 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kvc-M1-xPg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="kTO-V9-Dfi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="937.68115942028987" y="112.5"/>
+            <point key="canvasLocation" x="974" y="-589"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="CZw-O5-UeK">
+            <objects>
+                <viewController id="Bjh-3o-FVc" customClass="DetailViewController" customModule="MovieDiary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xe9-9k-1Pp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wave_bg" translatesAutoresizingMaskIntoConstraints="NO" id="1l9-eV-ek7">
+                                <rect key="frame" x="0.0" y="629" width="414" height="247"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1l9-eV-ek7" secondAttribute="height" multiplier="414:247" id="jRz-E7-Ql8"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ym3-9B-cCN">
+                                <rect key="frame" x="142.5" y="104" width="129" height="47"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Movies">
+                                        <attributes>
+                                            <color key="NSColor" red="0.80000000000000004" green="0.16862745098039217" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="40" name="Montserrat-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8oi-4S-ifX" userLabel="Back arrow">
+                                <rect key="frame" x="35" y="115" width="19" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="dzs-n3-Ugq"/>
+                                    <constraint firstAttribute="width" constant="19" id="khk-SU-AHL"/>
+                                </constraints>
+                                <color key="tintColor" red="0.80000000000000004" green="0.16862745100000001" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="chevron.left" catalog="system">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="21" scale="large" weight="bold"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="u10-qF-MMd">
+                                <rect key="frame" x="60" y="226" width="294" height="56"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Title">
+                                        <attributes>
+                                            <color key="NSColor" red="0.80000000000000004" green="0.16862745098039217" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="48" name="Montserrat-ExtraBold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="qg9-KA-uZg" firstAttribute="trailing" secondItem="1l9-eV-ek7" secondAttribute="trailing" id="5hA-vo-FVg"/>
+                            <constraint firstAttribute="bottom" secondItem="1l9-eV-ek7" secondAttribute="bottom" constant="20" symbolic="YES" id="7w8-ys-RHb"/>
+                            <constraint firstItem="8oi-4S-ifX" firstAttribute="top" secondItem="qg9-KA-uZg" secondAttribute="top" constant="71" id="HPR-Eq-hYi"/>
+                            <constraint firstItem="8oi-4S-ifX" firstAttribute="leading" secondItem="qg9-KA-uZg" secondAttribute="leading" constant="35" id="KIK-ce-brV"/>
+                            <constraint firstItem="Ym3-9B-cCN" firstAttribute="top" secondItem="qg9-KA-uZg" secondAttribute="top" constant="60" id="KNQ-Ss-bKD"/>
+                            <constraint firstItem="u10-qF-MMd" firstAttribute="top" secondItem="Ym3-9B-cCN" secondAttribute="bottom" constant="75" id="NzZ-nv-jVg"/>
+                            <constraint firstItem="1l9-eV-ek7" firstAttribute="top" secondItem="8oi-4S-ifX" secondAttribute="bottom" constant="487" id="R7a-Qa-eQQ"/>
+                            <constraint firstItem="Ym3-9B-cCN" firstAttribute="leading" secondItem="8oi-4S-ifX" secondAttribute="trailing" constant="88.5" id="WtZ-Px-elv"/>
+                            <constraint firstItem="qg9-KA-uZg" firstAttribute="trailing" secondItem="u10-qF-MMd" secondAttribute="trailing" constant="60" id="g1k-Ad-NyA"/>
+                            <constraint firstItem="u10-qF-MMd" firstAttribute="leading" secondItem="qg9-KA-uZg" secondAttribute="leading" constant="60" id="lYq-uW-c0l"/>
+                            <constraint firstItem="1l9-eV-ek7" firstAttribute="leading" secondItem="qg9-KA-uZg" secondAttribute="leading" id="trk-Ju-wOk"/>
+                            <constraint firstItem="qg9-KA-uZg" firstAttribute="trailing" secondItem="Ym3-9B-cCN" secondAttribute="trailing" constant="142.5" id="ykd-CM-NKd"/>
+                            <constraint firstItem="Ym3-9B-cCN" firstAttribute="centerX" secondItem="xe9-9k-1Pp" secondAttribute="centerX" id="zEz-yQ-yYW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qg9-KA-uZg"/>
+                    </view>
+                    <connections>
+                        <outlet property="waveBackground" destination="1l9-eV-ek7" id="QIi-WZ-5lj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DK2-Bs-6YY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="973.91304347826099" y="112.5"/>
         </scene>
     </scenes>
     <resources>
@@ -381,5 +460,6 @@
         <image name="empty_star_colored" width="20" height="19"/>
         <image name="empty_star_white" width="36" height="34"/>
         <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="wave_bg" width="415.5" height="247.5"/>
     </resources>
 </document>
