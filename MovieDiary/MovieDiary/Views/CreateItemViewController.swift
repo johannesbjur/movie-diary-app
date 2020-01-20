@@ -23,14 +23,14 @@ class CreateItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setBGroundToGradient()
+        view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
         
         setStyle( textInput: titleInput )
         setStyle( textInput: commentInput )
         
-        
     }
 
+//    Creates movie object from user input and sends to home screen
     @IBAction func savePressed(_ sender: UIButton) {
         
         if  let presenter = presentingViewController as? ViewController,
@@ -45,7 +45,7 @@ class CreateItemViewController: UIViewController {
         dismiss( animated: true, completion: nil )
     }
     
-    
+//    Handles graphics for rating stars
     @IBAction func starPressed(_ sender: UIButton) {
         
         rating_value = sender.tag
@@ -61,7 +61,7 @@ class CreateItemViewController: UIViewController {
         }
     }
     
-    
+
     func setStyle( textInput: UITextField ) {
         
         // Create bottom border
@@ -76,22 +76,6 @@ class CreateItemViewController: UIViewController {
         textInput.leftView = paddingView
         textInput.leftViewMode = UITextField.ViewMode.always
     }
-    
-    func setBGroundToGradient() {
-        
-        let gradientBackground = CAGradientLayer()
-        
-        gradientBackground.colors = [
-            UIColor.init( red: 204.0/255.0, green: 43.0/255.0, blue: 94.0/255.0, alpha: 1 ).cgColor,
-            UIColor.init( red: 117.0/255.0, green: 58.0/255.0, blue: 136.0/255.0, alpha: 1 ).cgColor
-        ]
-        
-        gradientBackground.frame = view.frame
-        
-        view.layer.addSublayer( gradientBackground )
-        view.layer.insertSublayer( gradientBackground, at: 0 )
-    }
-    
 
 
 }

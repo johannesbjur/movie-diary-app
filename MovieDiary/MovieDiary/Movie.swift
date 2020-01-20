@@ -10,7 +10,7 @@ import Foundation
 
 class Movie {
     
-    let title: String
+    var title: String = ""
     let comment: String
     let rating: Int
     let date: Date
