@@ -12,10 +12,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var menuView: UIView!
-    @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var starMenuItem: UIButton!
     @IBOutlet weak var showMenuButton: UIButton!
     @IBOutlet weak var menuViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var searchBar: UITextField!
+    @IBOutlet weak var searchView: UIView!
+    
     
     let segToDetailId   = "segHomeToDetail"
     let movieCellId     = "MovieCell"
@@ -32,8 +34,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         starMenuItem.alpha = 0
-
-        searchView.alpha = 0.0
+        searchView.alpha = 0
+        
+        
+        searchBar.borderStyle = UITextField.BorderStyle.none
+        
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect( x: 0.0, y: searchView.frame.height - 1, width: searchView.frame.width, height: 2.0 )
+        bottomLine.backgroundColor = UIColor.white.cgColor
+        searchView.layer.addSublayer( bottomLine )
+        
 
         
         view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
@@ -112,6 +122,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
     
+    @IBAction func hideSearchBarPressed(_ sender: UIButton) {
+        
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            
+            self.tableView.transform = CGAffineTransform(translationX: 0, y: 0)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                
+                self.searchView.alpha = 0.0
+            })
+        })
+        
+    }
     
     @IBAction func unwindToHome( segue: UIStoryboardSegue ) {}
     
@@ -142,6 +165,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    
+
 }
 
