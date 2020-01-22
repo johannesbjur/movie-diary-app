@@ -12,6 +12,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var starMenuItem: UIButton!
+    
+    @IBOutlet weak var showMenuButton: UIButton!
+    
+    @IBOutlet weak var menuViewHeight: NSLayoutConstraint!
     
     let segToDetailId   = "segHomeToDetail"
     let movieCellId     = "MovieCell"
@@ -21,8 +27,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        menuView.alpha = 0.0
         menuView.layer.borderWidth = 2
         menuView.layer.borderColor = UIColor.white.cgColor
+        menuViewHeight.constant = 70.0
+        
+        
+        starMenuItem.alpha = 0
+
+        searchView.alpha = 0.0
+
         
         view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
         
@@ -61,20 +75,45 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func menuPressed(_ sender: UIButton) {
         
+        self.showMenuButton.alpha = 0.0
 
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             
             self.tableView.transform = CGAffineTransform(translationX: 0, y: 60)
             
-            sender.isHidden = true
-            self.menuView.isHidden = false
             
-        }) { (_) in
+            self.menuView.alpha = 1.0
+            
+            self.menuViewHeight.constant = 135.0
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                
+                self.view.layoutIfNeeded()
+                self.starMenuItem.alpha = 1.0
+            })
             
             
             
-        }
+        })
         
+    }
+    @IBAction func showSearchPressed(_ sender: UIButton) {
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            
+            self.menuViewHeight.constant = 70.0
+            self.menuView.alpha = 0.0
+            self.searchView.alpha = 1.0
+
+            self.showMenuButton.alpha = 1.0
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                
+                self.view.layoutIfNeeded()
+            })
+        }, completion: { finished in
+                        
+        })
     }
     
     
