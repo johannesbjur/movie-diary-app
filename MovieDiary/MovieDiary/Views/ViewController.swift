@@ -11,7 +11,8 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var menuView: UIView!
+    
     let segToDetailId   = "segHomeToDetail"
     let movieCellId     = "MovieCell"
     
@@ -20,6 +21,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        menuView.layer.borderWidth = 2
+        menuView.layer.borderColor = UIColor.white.cgColor
+        
         view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
         
         tableView.delegate = self
@@ -27,20 +31,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.rowHeight = 180
 
 //        Test Object
-//        let mov = Movie( title: "aa", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 3 )
-//        movies.append( mov )
+        let mov = Movie( title: "aa", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 3 )
+        movies.append( mov )
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
-        for movie in movies {
-            print("---")
-            print("title: ", movie.title)
-            print("comment: ", movie.comment)
-            print("rating: ", movie.rating)
-            print("Date: ", movie.date)
-        }
+//        for movie in movies {
+//            print("---")
+//            print("title: ", movie.title)
+//            print("comment: ", movie.comment)
+//            print("rating: ", movie.rating)
+//            print("Date: ", movie.date)
+//        }
         
         self.tableView.reloadData()
     }
@@ -50,11 +54,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if segue.identifier == segToDetailId {
             let destVC = segue.destination as! DetailViewController
             
-            destVC.movie = sender as! Movie
+            destVC.movie = sender as? Movie
+        }
+    }
+    
+    
+    @IBAction func menuPressed(_ sender: UIButton) {
+        
+
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            
+            self.tableView.transform = CGAffineTransform(translationX: 0, y: 60)
+            
+            sender.isHidden = true
+            self.menuView.isHidden = false
+            
+        }) { (_) in
+            
+            
+            
         }
         
     }
-    
     
     
     @IBAction func unwindToHome( segue: UIStoryboardSegue ) {}
