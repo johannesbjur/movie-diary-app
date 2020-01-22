@@ -14,9 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var starMenuItem: UIButton!
-    
     @IBOutlet weak var showMenuButton: UIButton!
-    
     @IBOutlet weak var menuViewHeight: NSLayoutConstraint!
     
     let segToDetailId   = "segHomeToDetail"
@@ -72,6 +70,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    // TODO create toggle menu function or show / hide menu
     
     @IBAction func menuPressed(_ sender: UIButton) {
         
@@ -81,25 +80,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             self.tableView.transform = CGAffineTransform(translationX: 0, y: 60)
             
-            
             self.menuView.alpha = 1.0
+            self.starMenuItem.alpha = 1.0
             
             self.menuViewHeight.constant = 135.0
             
             UIView.animate(withDuration: 0.5, animations: {
                 
                 self.view.layoutIfNeeded()
-                self.starMenuItem.alpha = 1.0
             })
-            
-            
-            
         })
         
     }
+    
     @IBAction func showSearchPressed(_ sender: UIButton) {
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             
             self.menuViewHeight.constant = 70.0
             self.menuView.alpha = 0.0
