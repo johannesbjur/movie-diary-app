@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var searchBar: UITextField!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var showSearchButton: UIButton!
+    @IBOutlet weak var hideSearchButton: UIButton!
     
     
     let segToDetailId   = "segHomeToDetail"
@@ -28,15 +29,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menuView.alpha = 0.0
+        starMenuItem.alpha      = 0
+        searchView.alpha        = 0
+        hideSearchButton.alpha  = 0
+        menuView.alpha          = 0
+        
         menuView.layer.borderWidth = 2
         menuView.layer.borderColor = UIColor.white.cgColor
         menuViewHeight.constant = 70.0
-        
-        
-        starMenuItem.alpha = 0
-        searchView.alpha = 0
-        
         
         searchBar.borderStyle = UITextField.BorderStyle.none
         
@@ -44,7 +44,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         bottomLine.frame = CGRect( x: 0.0, y: searchView.frame.height - 1, width: searchView.frame.width, height: 2.0 )
         bottomLine.backgroundColor = UIColor.white.cgColor
         searchView.layer.addSublayer( bottomLine )
-        
 
         
         view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
@@ -53,6 +52,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         tableView.rowHeight = 180
 
+        
 //        Test Object
         let mov = Movie( title: "aa", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 3 )
         movies.append( mov )
@@ -81,53 +81,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    // TODO create toggle menu function or show / hide menu
     
+//    MARK: Menu tap functions
     @IBAction func menuPressed(_ sender: UIButton) {
         
         showMenu()
-        
     }
     
     @IBAction func showSearchPressed(_ sender: UIButton) {
         
-        hideMenu()
-
-//        let crossConfig = UIImage.SymbolConfiguration(pointSize: 32.0)
-//        let cross = UIImage(systemName: "multiply", withConfiguration: crossConfig)
-//        showSearchButton.setImage( cross, for: .normal )
-        
-        
-        
-        // Show search bar
-        self.searchView.alpha = 1.0
-        
-        UIView.animate(withDuration: 0.5, animations: {
-            
-            self.view.layoutIfNeeded()
-        })
-
+        showSearchBar()
     }
     
     @IBAction func hideSearchBarPressed(_ sender: UIButton) {
         
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-            
-            self.tableView.transform = CGAffineTransform(translationX: 0, y: 0)
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                
-                self.searchView.alpha = 0.0
-            })
-        })
-        
+        hideSearchBar()
         hideMenu()
-        
     }
     
     @IBAction func unwindToHome( segue: UIStoryboardSegue ) {}
     
     
+    
+//    MARK: TableView functions
 //    Number of rows in table view = to number of movie objects in movies
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

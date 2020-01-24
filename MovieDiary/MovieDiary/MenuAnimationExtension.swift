@@ -48,5 +48,36 @@ extension ViewController {
         })
     }
     
+    func showSearchBar() {
+        
+        self.showSearchButton.alpha = 0
+        
+        // Show search bar
+        self.searchView.alpha = 1.0
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            
+            self.hideSearchButton.alpha = 1
+            
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    func hideSearchBar() {
+        
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            
+            self.tableView.transform = CGAffineTransform(translationX: 0, y: 0)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                
+                self.searchView.alpha = 0.0
+            })
+        }, completion: { [weak self] finished in
+            self?.showSearchButton.alpha = 1
+            self?.hideSearchButton.alpha = 0
+        })
+    }
+    
     
 }
