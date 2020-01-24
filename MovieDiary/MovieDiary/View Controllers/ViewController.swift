@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var starMenuItem: UIButton!
     @IBOutlet weak var showMenuButton: UIButton!
     @IBOutlet weak var menuViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var searchBar: UITextField!
+    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var showSearchButton: UIButton!
     @IBOutlet weak var hideSearchButton: UIButton!
@@ -38,7 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         menuView.layer.borderColor = UIColor.white.cgColor
         menuViewHeight.constant = 70.0
         
-        searchBar.borderStyle = UITextField.BorderStyle.none
+        searchTextField.borderStyle = UITextField.BorderStyle.none
         
         let bottomLine = CALayer()
         bottomLine.frame = CGRect( x: 0.0, y: searchView.frame.height - 1, width: searchView.frame.width, height: 2.0 )
@@ -56,6 +56,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        Test Object
         let mov = Movie( title: "aa", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 3 )
         movies.append( mov )
+        
+        
+        
+        
         
     }
     
@@ -89,6 +93,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func showSearchPressed(_ sender: UIButton) {
+        
+        searchTextField.becomeFirstResponder()
         
         showSearchBar()
     }

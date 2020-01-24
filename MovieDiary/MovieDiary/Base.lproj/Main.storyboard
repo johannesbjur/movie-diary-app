@@ -243,7 +243,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="748-7s-WG8">
                                 <rect key="frame" x="100" y="172" width="244" height="50"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Search..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fOQ-eV-hfr" userLabel="Search bar">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Search..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fOQ-eV-hfr" userLabel="Search text field">
                                         <rect key="frame" x="52" y="2" width="192" height="39"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -300,7 +300,7 @@
                         <outlet property="hideSearchButton" destination="bqb-YZ-GKo" id="yxQ-pQ-ZJQ"/>
                         <outlet property="menuView" destination="ez0-cj-7SD" id="3Qw-Ud-7sY"/>
                         <outlet property="menuViewHeight" destination="i0d-7Y-2zX" id="DCH-5w-WEc"/>
-                        <outlet property="searchBar" destination="fOQ-eV-hfr" id="fgZ-1b-Dmd"/>
+                        <outlet property="searchTextField" destination="fOQ-eV-hfr" id="CN8-ON-C5L"/>
                         <outlet property="searchView" destination="748-7s-WG8" id="EGZ-ev-tYr"/>
                         <outlet property="showMenuButton" destination="dGz-PD-GAg" id="BQq-se-jj9"/>
                         <outlet property="showSearchButton" destination="cOd-Ac-kXJ" id="ccQ-6G-2NS"/>
