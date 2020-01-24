@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var menuViewHeight: NSLayoutConstraint!
     @IBOutlet weak var searchBar: UITextField!
     @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var showSearchButton: UIButton!
     
     
     let segToDetailId   = "segHomeToDetail"
@@ -84,42 +85,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func menuPressed(_ sender: UIButton) {
         
-        self.showMenuButton.alpha = 0.0
-
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-            
-            self.tableView.transform = CGAffineTransform(translationX: 0, y: 60)
-            
-            self.menuView.alpha = 1.0
-            self.starMenuItem.alpha = 1.0
-            
-            self.menuViewHeight.constant = 135.0
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                
-                self.view.layoutIfNeeded()
-            })
-        })
+        showMenu()
         
     }
     
     @IBAction func showSearchPressed(_ sender: UIButton) {
         
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-            
-            self.menuViewHeight.constant = 70.0
-            self.menuView.alpha = 0.0
-            self.searchView.alpha = 1.0
+        hideMenu()
 
-            self.showMenuButton.alpha = 1.0
+//        let crossConfig = UIImage.SymbolConfiguration(pointSize: 32.0)
+//        let cross = UIImage(systemName: "multiply", withConfiguration: crossConfig)
+//        showSearchButton.setImage( cross, for: .normal )
+        
+        
+        
+        // Show search bar
+        self.searchView.alpha = 1.0
+        
+        UIView.animate(withDuration: 0.5, animations: {
             
-            UIView.animate(withDuration: 0.5, animations: {
-                
-                self.view.layoutIfNeeded()
-            })
-        }, completion: { finished in
-                        
+            self.view.layoutIfNeeded()
         })
+
     }
     
     @IBAction func hideSearchBarPressed(_ sender: UIButton) {
@@ -133,6 +120,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.searchView.alpha = 0.0
             })
         })
+        
+        hideMenu()
         
     }
     

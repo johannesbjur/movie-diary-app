@@ -306,6 +306,7 @@
                         <outlet property="searchBar" destination="fOQ-eV-hfr" id="fgZ-1b-Dmd"/>
                         <outlet property="searchView" destination="748-7s-WG8" id="EGZ-ev-tYr"/>
                         <outlet property="showMenuButton" destination="dGz-PD-GAg" id="BQq-se-jj9"/>
+                        <outlet property="showSearchButton" destination="cOd-Ac-kXJ" id="v3N-zY-xND"/>
                         <outlet property="starMenuItem" destination="2er-Hz-fwG" id="CuZ-Bx-3Hr"/>
                         <outlet property="tableView" destination="FYQ-BU-rOB" id="4Am-0g-H1k"/>
                         <segue destination="Bjh-3o-FVc" kind="presentation" identifier="segHomeToDetail" modalPresentationStyle="fullScreen" id="plb-Vd-SAr"/>
