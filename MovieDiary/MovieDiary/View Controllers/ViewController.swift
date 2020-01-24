@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var menuView: UIView!
@@ -25,6 +25,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let movieCellId     = "MovieCell"
     
     var movies: [Movie] = []
+    var searchedMovies: [Movie] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,16 +52,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 180
+        
+        
+        searchTextField.delegate = self
+        
+        searchTextField.addTarget( self, action: #selector( self.textFieldDidChange(_:) ), for: UIControl.Event.editingChanged )
 
         
 //        Test Object
         let mov = Movie( title: "aa", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 3 )
         movies.append( mov )
-        
-        
-        
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,7 +74,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //            print("Date: ", movie.date)
 //        }
         
+        self.searchedMovies = movies
+        
         self.tableView.reloadData()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,7 +90,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-//    MARK: Menu tap functions
+//    MARK:- Menu tap functions
     @IBAction func menuPressed(_ sender: UIButton) {
         
         showMenu()
@@ -109,18 +113,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     
-//    MARK: TableView functions
+//    MARK:- TableView functions
 //    Number of rows in table view = to number of movie objects in movies
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return movies.count
+        return searchedMovies.count
     }
-    
     
 //    Goes through all cells in tableview and sets data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let movie = movies[indexPath.row]
+        let movie = searchedMovies[indexPath.row]
         let movieCell = tableView.dequeueReusableCell( withIdentifier: movieCellId ) as! MovieCell
         
         movieCell.setData( withMovie: movie )
@@ -131,11 +134,36 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let movie = movies[indexPath.row]
+        let movie = searchedMovies[indexPath.row]
         performSegue( withIdentifier: segToDetailId, sender: movie )
     }
     
     
+//    MARK:- Text field search function
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        
+        guard let text = textField.text else {return}
+        
+        if text == "" {
+            searchedMovies = movies
+        }
+        else {
+            searchedMovies = []
+        }
+        
+        for movie in movies {
+            
+            let range  = movie.title.lowercased().range(of: text, options: .caseInsensitive, range: nil, locale: nil)
+            
+            if range != nil {
+                
+                self.searchedMovies.append(movie)
+            }
+        }
+        
+        tableView.reloadData()
+    }
+
 
 }
 

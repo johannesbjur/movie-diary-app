@@ -33,6 +33,7 @@ class CreateItemViewController: UIViewController {
 //    Creates movie object from user input and sends to home screen
     @IBAction func savePressed(_ sender: UIButton) {
         
+//        TODO: Change to guard let
         if  let presenter = presentingViewController as? ViewController,
             let title = titleInput.text,
             let comment = commentInput.text {
