@@ -30,6 +30,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
+        
         starMenuItem.alpha      = 0
         searchView.alpha        = 0
         hideSearchButton.alpha  = 0
@@ -47,21 +49,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         searchView.layer.addSublayer( bottomLine )
 
         
-        view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 180
         
         
         searchTextField.delegate = self
-        
         searchTextField.addTarget( self, action: #selector( self.textFieldDidChange(_:) ), for: UIControl.Event.editingChanged )
 
         
-//        Test Object
+//        Test Objects
         let mov = Movie( title: "aa", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 3 )
+        let mov2 = Movie( title: "bb", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 4 )
         movies.append( mov )
+        movies.append( mov2 )
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -75,9 +76,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        }
         
         self.filteredMovies = movies
-        
         self.tableView.reloadData()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -91,6 +90,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
 //    MARK:- Menu tap functions
+    
     @IBAction func menuPressed(_ sender: UIButton) {
         
         showMenu()
@@ -113,11 +113,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         hideMenu()
     }
     
+    @IBAction func sortByRatingPressed(_ sender: UIButton) {
+        
+        filteredMovies = movies.sorted(by: { $0.rating > $1.rating })
+        tableView.reloadData()
+    }
+    
     @IBAction func unwindToHome( segue: UIStoryboardSegue ) {}
     
     
     
 //    MARK:- TableView functions
+    
 //    Number of rows in table view = to number of movie objects in movies
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -144,6 +151,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
 //    MARK:- Text field search function
+    
     @objc func textFieldDidChange(_ textField: UITextField) {
         
         guard let text = textField.text else {return}

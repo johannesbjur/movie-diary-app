@@ -206,13 +206,16 @@
                                             <action selector="showSearchPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cKN-si-Sd7"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2er-Hz-fwG">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2er-Hz-fwG" userLabel="Sort By Rating">
                                         <rect key="frame" x="17" y="76" width="36" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" id="lP1-JJ-Or5"/>
                                             <constraint firstAttribute="height" constant="34" id="ukU-RZ-WcS"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="full_star_white"/>
+                                        <connections>
+                                            <action selector="sortByRatingPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Je0-Sc-uft"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqb-YZ-GKo" userLabel="Hide Search Button">
                                         <rect key="frame" x="20" y="21" width="30" height="29.5"/>
