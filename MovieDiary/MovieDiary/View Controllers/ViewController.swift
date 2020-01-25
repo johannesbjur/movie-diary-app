@@ -12,7 +12,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var menuView: UIView!
-    @IBOutlet weak var starMenuItem: UIButton!
+    @IBOutlet weak var sortByHighestBtn: UIButton!
+    @IBOutlet weak var sortByLowestBtn: UIButton!
     @IBOutlet weak var showMenuButton: UIButton!
     @IBOutlet weak var menuViewHeight: NSLayoutConstraint!
     @IBOutlet weak var searchTextField: UITextField!
@@ -32,26 +33,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
         
-        starMenuItem.alpha      = 0
+        sortByHighestBtn.alpha  = 0
+        sortByLowestBtn.alpha   = 0
         searchView.alpha        = 0
         hideSearchButton.alpha  = 0
         menuView.alpha          = 0
         
-        menuView.layer.borderWidth = 2
-        menuView.layer.borderColor = UIColor.white.cgColor
-        menuViewHeight.constant = 70.0
+        menuView.layer.borderWidth  = 2
+        menuView.layer.borderColor  = UIColor.white.cgColor
+        menuViewHeight.constant     = 70.0
         
         searchTextField.borderStyle = UITextField.BorderStyle.none
         
         let bottomLine = CALayer()
-        bottomLine.frame = CGRect( x: 0.0, y: searchView.frame.height - 1, width: searchView.frame.width, height: 2.0 )
-        bottomLine.backgroundColor = UIColor.white.cgColor
+        bottomLine.frame            = CGRect( x: 0.0, y: searchView.frame.height - 1, width: searchView.frame.width, height: 2.0 )
+        bottomLine.backgroundColor  = UIColor.white.cgColor
         searchView.layer.addSublayer( bottomLine )
 
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 180
+        tableView.delegate      = self
+        tableView.dataSource    = self
+        tableView.rowHeight     = 180
         
         
         searchTextField.delegate = self
@@ -59,8 +61,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         
 //        Test Objects
-        let mov = Movie( title: "aa", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 3 )
-        let mov2 = Movie( title: "bb", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 4 )
+        let mov     = Movie( title: "aa", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 3 )
+        let mov2    = Movie( title: "bb", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 4 )
         movies.append( mov )
         movies.append( mov2 )
     }
@@ -113,10 +115,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         hideMenu()
     }
     
-    @IBAction func sortByRatingPressed(_ sender: UIButton) {
+    @IBAction func sortByHighestPressed(_ sender: UIButton) {
         
         filteredMovies = movies.sorted(by: { $0.rating > $1.rating })
         tableView.reloadData()
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            
+            self.sortByHighestBtn.alpha = 0.0
+            self.sortByLowestBtn.alpha = 1.0
+        })
+    }
+    
+    @IBAction func sortByLowestPressed(_ sender: UIButton) {
+        
+        filteredMovies = movies.sorted(by: { $0.rating < $1.rating })
+        tableView.reloadData()
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            
+            self.sortByHighestBtn.alpha = 1.0
+            self.sortByLowestBtn.alpha = 0.0
+        })
     }
     
     @IBAction func unwindToHome( segue: UIStoryboardSegue ) {}

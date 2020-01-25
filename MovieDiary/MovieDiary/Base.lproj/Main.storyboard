@@ -206,15 +206,15 @@
                                             <action selector="showSearchPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cKN-si-Sd7"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2er-Hz-fwG" userLabel="Sort By Rating">
-                                        <rect key="frame" x="17" y="76" width="36" height="34"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2er-Hz-fwG" userLabel="Sort By Highest Rating">
+                                        <rect key="frame" x="10" y="76" width="50" height="34"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="36" id="lP1-JJ-Or5"/>
+                                            <constraint firstAttribute="width" constant="50" id="lP1-JJ-Or5"/>
                                             <constraint firstAttribute="height" constant="34" id="ukU-RZ-WcS"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="full_star_white"/>
+                                        <state key="normal" image="star_arrow_down"/>
                                         <connections>
-                                            <action selector="sortByRatingPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Je0-Sc-uft"/>
+                                            <action selector="sortByHighestPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9fm-ch-g03"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqb-YZ-GKo" userLabel="Hide Search Button">
@@ -227,9 +227,21 @@
                                             <action selector="hideSearchBarPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aKA-bR-9xC"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgI-Zz-kg7" userLabel="Sort By Lowest Rating">
+                                        <rect key="frame" x="10" y="76" width="50" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="JtU-j7-i9b"/>
+                                            <constraint firstAttribute="width" constant="50" id="j1r-0G-EZT"/>
+                                        </constraints>
+                                        <state key="normal" image="star_arrow_up"/>
+                                        <connections>
+                                            <action selector="sortByLowestPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KHi-6m-S8h"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="xgI-Zz-kg7" firstAttribute="centerX" secondItem="ez0-cj-7SD" secondAttribute="centerX" id="KNm-XP-mG8"/>
                                     <constraint firstItem="cOd-Ac-kXJ" firstAttribute="top" secondItem="ez0-cj-7SD" secondAttribute="top" constant="20" id="Nd4-5G-Eji"/>
                                     <constraint firstItem="bqb-YZ-GKo" firstAttribute="top" secondItem="ez0-cj-7SD" secondAttribute="top" constant="21" id="Ntq-mG-X5y"/>
                                     <constraint firstAttribute="width" constant="70" id="PB0-jW-f3B"/>
@@ -237,6 +249,7 @@
                                     <constraint firstItem="cOd-Ac-kXJ" firstAttribute="centerX" secondItem="ez0-cj-7SD" secondAttribute="centerX" id="iK3-jF-jV8"/>
                                     <constraint firstItem="2er-Hz-fwG" firstAttribute="centerX" secondItem="ez0-cj-7SD" secondAttribute="centerX" id="jlJ-IZ-a3f"/>
                                     <constraint firstAttribute="bottom" secondItem="2er-Hz-fwG" secondAttribute="bottom" constant="25" id="lmz-4V-DOv"/>
+                                    <constraint firstAttribute="bottom" secondItem="xgI-Zz-kg7" secondAttribute="bottom" constant="25" id="neI-Rk-Kat"/>
                                     <constraint firstItem="bqb-YZ-GKo" firstAttribute="centerX" secondItem="ez0-cj-7SD" secondAttribute="centerX" id="qye-vH-Wc9"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -307,7 +320,8 @@
                         <outlet property="searchView" destination="748-7s-WG8" id="EGZ-ev-tYr"/>
                         <outlet property="showMenuButton" destination="dGz-PD-GAg" id="BQq-se-jj9"/>
                         <outlet property="showSearchButton" destination="cOd-Ac-kXJ" id="ccQ-6G-2NS"/>
-                        <outlet property="starMenuItem" destination="2er-Hz-fwG" id="CuZ-Bx-3Hr"/>
+                        <outlet property="sortByHighestBtn" destination="2er-Hz-fwG" id="BbC-OX-aiz"/>
+                        <outlet property="sortByLowestBtn" destination="xgI-Zz-kg7" id="GfP-Dr-7oQ"/>
                         <outlet property="tableView" destination="FYQ-BU-rOB" id="4Am-0g-H1k"/>
                         <segue destination="Bjh-3o-FVc" kind="presentation" identifier="segHomeToDetail" modalPresentationStyle="fullScreen" id="plb-Vd-SAr"/>
                     </connections>
@@ -654,11 +668,12 @@
         <image name="chevron.right" catalog="system" width="48" height="64"/>
         <image name="empty_star_colored" width="20" height="19"/>
         <image name="empty_star_white" width="36" height="34"/>
-        <image name="full_star_white" width="36" height="34"/>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
         <image name="menu" width="25" height="25"/>
         <image name="multiply" catalog="system" width="64" height="54"/>
         <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="star_arrow_down" width="38" height="25"/>
+        <image name="star_arrow_up" width="38" height="23.5"/>
         <image name="wave_bg" width="415.5" height="247.5"/>
     </resources>
 </document>

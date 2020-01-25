@@ -21,7 +21,7 @@ extension ViewController {
             self.tableView.transform = CGAffineTransform(translationX: 0, y: 60)
             
             self.menuView.alpha = 1.0
-            self.starMenuItem.alpha = 1.0
+            self.sortByHighestBtn.alpha = 1.0
             
             self.menuViewHeight.constant = 135.0
             
