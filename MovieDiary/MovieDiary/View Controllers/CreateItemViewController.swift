@@ -33,6 +33,7 @@ class CreateItemViewController: UIViewController {
 //    Creates movie object from user input and sends to home screen
     @IBAction func savePressed(_ sender: UIButton) {
         
+//        TODO: Change to guard let
         if  let presenter = presentingViewController as? ViewController,
             let title = titleInput.text,
             let comment = commentInput.text {
@@ -61,7 +62,7 @@ class CreateItemViewController: UIViewController {
         }
     }
     
-
+// TODO move to shared file / extension
     func setStyle( textInput: UITextField ) {
         
         // Create bottom border
@@ -72,7 +73,7 @@ class CreateItemViewController: UIViewController {
         textInput.layer.addSublayer( bottomLine )
         
         // Create padding
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: self.titleInput.frame.height))
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: textInput.frame.height))
         textInput.leftView = paddingView
         textInput.leftViewMode = UITextField.ViewMode.always
     }
