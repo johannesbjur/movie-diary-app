@@ -61,10 +61,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         
 //        Test Objects
-        let mov     = Movie( title: "aa", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 3 )
-        let mov2    = Movie( title: "bb", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 4 )
-        movies.append( mov )
-        movies.append( mov2 )
+//        let mov     = Movie( title: "aa", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 3 )
+//        let mov2    = Movie( title: "bb", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 4 )
+//        movies.append( mov )
+//        movies.append( mov2 )
     }
     
     override func viewDidAppear(_ animated: Bool) {
