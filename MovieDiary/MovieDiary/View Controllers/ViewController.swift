@@ -25,7 +25,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let movieCellId     = "MovieCell"
     
     var movies: [Movie] = []
-    var searchedMovies: [Movie] = []
+    var filteredMovies: [Movie] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +74,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //            print("Date: ", movie.date)
 //        }
         
-        self.searchedMovies = movies
+        self.filteredMovies = movies
         
         self.tableView.reloadData()
         
@@ -117,13 +117,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //    Number of rows in table view = to number of movie objects in movies
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return searchedMovies.count
+        return filteredMovies.count
     }
     
 //    Goes through all cells in tableview and sets data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let movie = searchedMovies[indexPath.row]
+        let movie = filteredMovies[indexPath.row]
         let movieCell = tableView.dequeueReusableCell( withIdentifier: movieCellId ) as! MovieCell
         
         movieCell.setData( withMovie: movie )
@@ -134,7 +134,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let movie = searchedMovies[indexPath.row]
+        let movie = filteredMovies[indexPath.row]
         performSegue( withIdentifier: segToDetailId, sender: movie )
     }
     
@@ -145,10 +145,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         guard let text = textField.text else {return}
         
         if text == "" {
-            searchedMovies = movies
+            filteredMovies = movies
         }
         else {
-            searchedMovies = []
+            filteredMovies = []
         }
         
         for movie in movies {
@@ -157,13 +157,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             if range != nil {
                 
-                self.searchedMovies.append(movie)
+                self.filteredMovies.append(movie)
             }
         }
         
         tableView.reloadData()
     }
-
+    
+    
+    
 
 }
 
