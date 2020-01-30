@@ -23,6 +23,15 @@ class Movie {
         self.date       = Date()
     }
     
+    func toDict() -> [String: Any] {
+        
+        return [
+            "title":   self.title,
+            "comment": self.comment,
+            "rating":  self.rating,
+            "date":    self.date
+        ]
+    }
     
     
     

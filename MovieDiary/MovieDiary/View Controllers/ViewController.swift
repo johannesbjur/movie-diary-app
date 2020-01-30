@@ -35,7 +35,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         
         db = Firestore.firestore()
-        
         let moviesRef = db.collection("movies")
         
         
