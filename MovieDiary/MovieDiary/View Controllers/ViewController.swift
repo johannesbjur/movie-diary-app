@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -25,11 +26,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let segToDetailId   = "segHomeToDetail"
     let movieCellId     = "MovieCell"
     
+    var db: Firestore!
+    
     var movies: [Movie] = []
     var filteredMovies: [Movie] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        db = Firestore.firestore()
+        
+        let moviesRef = db.collection("movies")
+        
         
         view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
         
@@ -89,6 +97,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             destVC.movie = sender as? Movie
         }
     }
+    
+//    MARK:- FireStore functions
+    
+    
     
     
 //    MARK:- Menu tap functions
