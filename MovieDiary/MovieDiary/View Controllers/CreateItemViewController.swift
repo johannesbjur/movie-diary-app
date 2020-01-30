@@ -44,8 +44,9 @@ class CreateItemViewController: UIViewController {
         
         let movie = Movie( title: title, comment: comment, rating: rating_value )
 
-//            let moviesRef = db.collection("movies")
-//            moviesRef.addDocument(data: movie.toDict())
+//        Save movie to database
+        let moviesRef = db.collection("movies")
+        moviesRef.addDocument(data: movie.toDict())
         
         presenter.movies.append( movie )
         

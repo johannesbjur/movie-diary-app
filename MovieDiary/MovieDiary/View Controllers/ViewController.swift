@@ -34,8 +34,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         db = Firestore.firestore()
         let moviesRef = db.collection("movies")
+        
+        moviesRef.getDocuments() { ( snapshot, err ) in
+            
+            guard let documents = snapshot?.documents else {return}
+            
+            for document in documents {
+                
+                let movie = Movie( snapshot: document )
+                
+                self.movies.append(movie)
+                
+                print(movie.title)
+                
+            }
+            
+            self.filteredMovies = self.movies
+            self.tableView.reloadData()
+        }
+        
         
         
         view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
@@ -68,21 +88,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         
 //        Test Objects
-        let mov     = Movie( title: "aa", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 3 )
-        let mov2    = Movie( title: "bb", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 4 )
-        movies.append( mov )
-        movies.append( mov2 )
+//        let mov     = Movie( title: "aa", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 3 )
+//        let mov2    = Movie( title: "bb", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 4 )
+//        movies.append( mov )
+//        movies.append( mov2 )
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-//        for movie in movies {
-//            print("---")
-//            print("title: ", movie.title)
-//            print("comment: ", movie.comment)
-//            print("rating: ", movie.rating)
-//            print("Date: ", movie.date)
-//        }
         
         self.filteredMovies = movies
         self.tableView.reloadData()
