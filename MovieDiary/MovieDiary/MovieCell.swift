@@ -16,7 +16,7 @@ class MovieCell: UITableViewCell {
     
     func setData( withMovie movie: Movie ) {
         
-        self.movieTitle.text = movie.title
+        self.movieTitle.text = movie.title.capitalized
         
         for star in ratingStars {
             

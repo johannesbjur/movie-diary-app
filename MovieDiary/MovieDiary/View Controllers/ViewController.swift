@@ -34,28 +34,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        db = Firestore.firestore()
-        let moviesRef = db.collection("movies")
-        
-        moviesRef.getDocuments() { ( snapshot, err ) in
-            
-            guard let documents = snapshot?.documents else {return}
-            
-            for document in documents {
-                
-                let movie = Movie( snapshot: document )
-                
-                self.movies.append(movie)
-                
-                print(movie.title)
-                
-            }
-            
-            self.filteredMovies = self.movies
-            self.tableView.reloadData()
-        }
-        
+        updateMovies()
         
         
         view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
@@ -111,7 +90,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 //    MARK:- FireStore functions
     
-    
+    func updateMovies() {
+        
+        db = Firestore.firestore()
+        let moviesRef = db.collection( "movies" )
+        
+        moviesRef.getDocuments() { ( snapshot, err ) in
+            
+            guard let documents = snapshot?.documents else { return }
+            
+            for document in documents {
+                
+                if let movie = Movie( snapshot: document ) {
+                
+                    self.movies.append( movie )
+                }
+            }
+            
+            self.filteredMovies = self.movies
+            self.tableView.reloadData()
+        }
+    }
     
     
 //    MARK:- Menu tap functions

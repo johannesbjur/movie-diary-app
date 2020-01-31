@@ -11,7 +11,7 @@ import Firebase
 
 class Movie {
     
-    var title: String = ""
+    var title: String
     let comment: String
     let rating: Int
     let date: String
@@ -27,16 +27,23 @@ class Movie {
         self.date       = formatter.string( from: Date() )
     }
     
-    init( snapshot: QueryDocumentSnapshot ) {
+    
+//    Constructor using item from database.
+//    Returns nil if a value is missing
+    init?( snapshot: QueryDocumentSnapshot  ) {
         
         let snapshotValue = snapshot.data() as [String: Any]
         
+        guard let title     = snapshotValue["title"] as? String else { return nil }
+        guard let comment   = snapshotValue["comment"] as? String else { return nil }
+        guard let rating    = snapshotValue["rating"] as? Int else { return nil }
+        guard let date      = snapshotValue["date"] as? String else { return nil }
         
-//        TODO: change unwrapping (!)
-        self.title = snapshotValue["title"] as! String
-        self.comment = snapshotValue["comment"] as! String
-        self.rating = snapshotValue["rating"] as! Int
-        self.date = snapshotValue["date"] as! String
+        
+        self.title      = title
+        self.comment    = comment
+        self.rating     = rating
+        self.date       = date
     }
     
     func toDict() -> [String: Any] {
