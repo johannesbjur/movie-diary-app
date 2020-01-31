@@ -35,7 +35,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         
         updateMovies()
-        
+
         
         view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
         
@@ -64,19 +64,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         searchTextField.delegate = self
         searchTextField.addTarget( self, action: #selector( self.textFieldDidChange(_:) ), for: UIControl.Event.editingChanged )
-
-        
-//        Test Objects
-//        let mov     = Movie( title: "aa", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 3 )
-//        let mov2    = Movie( title: "bb", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", rating: 4 )
-//        movies.append( mov )
-//        movies.append( mov2 )
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
-        self.filteredMovies = movies
-        self.tableView.reloadData()
+        updateMovies()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -95,18 +87,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         db = Firestore.firestore()
         let moviesRef = db.collection( "movies" )
         
-        moviesRef.getDocuments() { ( snapshot, err ) in
+        moviesRef.addSnapshotListener() { (snapshot, error) in
             
             guard let documents = snapshot?.documents else { return }
+            
+            self.movies = []
             
             for document in documents {
                 
                 if let movie = Movie( snapshot: document ) {
-                
+                    
                     self.movies.append( movie )
                 }
             }
-            
+                
             self.filteredMovies = self.movies
             self.tableView.reloadData()
         }
