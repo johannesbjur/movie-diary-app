@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CreateItemViewController: UIViewController {
 
@@ -18,10 +19,14 @@ class CreateItemViewController: UIViewController {
     
     let segToHomeId = "segToHome"
     
+    var db: Firestore!
+    
     var rating_value: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        db = Firestore.firestore()
 
         view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
         
@@ -33,15 +38,18 @@ class CreateItemViewController: UIViewController {
 //    Creates movie object from user input and sends to home screen
     @IBAction func savePressed(_ sender: UIButton) {
         
-//        TODO: Change to guard let
-        if  let presenter = presentingViewController as? ViewController,
-            let title = titleInput.text,
-            let comment = commentInput.text {
-            
-            let movie = Movie( title: title, comment: comment, rating: rating_value )
-            
-            presenter.movies.append( movie )
-        }
+        guard let presenter = presentingViewController as? ViewController else {return}
+        guard let title     = titleInput.text else {return}
+        guard let comment     = commentInput.text else {return}
+        
+        let movie = Movie( title: title, comment: comment, rating: rating_value )
+
+//        Save movie to database
+        let moviesRef = db.collection("movies")
+        moviesRef.addDocument(data: movie.toDict())
+        
+        presenter.movies.append( movie )
+        
         
         dismiss( animated: true, completion: nil )
     }
