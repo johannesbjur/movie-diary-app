@@ -6,6 +6,7 @@ target 'MovieDiary' do
   use_frameworks!
 
   # Pods for MovieDiary
+  pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Firebase/Analytics'
 

@@ -34,8 +34,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateMovies()
-
+//        updateMovies()
+        
+        Auth.auth().signInAnonymously() { ( authResult, error ) in
+            
+            guard let user = authResult?.user else { return }
+//            let isAnonymous = user.isAnonymous  // true
+//            let uid = user.uid
+        }
+        
         
         view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
         
@@ -85,7 +92,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func updateMovies() {
         
         db = Firestore.firestore()
-        let moviesRef = db.collection( "movies" )
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let moviesRef = db.collection( "users" ).document( uid ).collection( "movies" )
         
         moviesRef.addSnapshotListener() { (snapshot, error) in
             
@@ -179,6 +188,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
+//    Send selected movie object before segue
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let movie = filteredMovies[indexPath.row]
@@ -190,7 +200,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         
-        guard let text = textField.text else {return}
+        guard let text = textField.text else { return }
         
         if text == "" {
             filteredMovies = movies
