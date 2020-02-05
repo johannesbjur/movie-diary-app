@@ -34,8 +34,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        updateMovies()
-        
         Auth.auth().signInAnonymously() { ( authResult, error ) in
             
             guard let user = authResult?.user else { return }
@@ -211,7 +209,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         for movie in movies {
             
-            let range  = movie.title.lowercased().range(of: text, options: .caseInsensitive, range: nil, locale: nil)
+            let range  = movie.title.lowercased().range( of: text, options: .caseInsensitive, range: nil, locale: nil )
             
             if range != nil {
                 

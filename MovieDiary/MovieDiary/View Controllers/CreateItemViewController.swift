@@ -40,12 +40,12 @@ class CreateItemViewController: UIViewController {
         
         guard let presenter = presentingViewController as? ViewController else { return }
         guard let title     = titleInput.text else { return }
-        guard let comment     = commentInput.text else { return }
+        guard let comment   = commentInput.text else { return }
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         let movie = Movie( title: title, comment: comment, rating: rating_value )
 
-//        Save movie to database
+//        Save movie to database movie.saveToDb() / movie.save()
         let moviesRef = db.collection( "users" ).document( uid ).collection( "movies" )
         moviesRef.addDocument(data: movie.toDict())
         
