@@ -28,6 +28,14 @@ class Movies {
         self.movies.append( movie )
     }
     
+    func add( movies: Movies ) {
+        
+        for movie in movies.movies {
+            
+            self.movies.append( movie )
+        }
+    }
+    
     func empty() {
         
         self.movies = []
@@ -48,7 +56,7 @@ class Movies {
     }
     
 //    get movies from database with completion statement
-    func update() {
+    func update( completion: @escaping () -> () ) {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
@@ -68,11 +76,10 @@ class Movies {
                     self.add( movie: movie )
                 }
             }
+            
+            completion()
         }
-        
     }
-    
-    
     
     
     
