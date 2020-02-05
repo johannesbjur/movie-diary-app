@@ -17,6 +17,7 @@
 		8C72AF2523D4751A00AE1FBC /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C72AF2123D4751A00AE1FBC /* Montserrat-SemiBoldItalic.ttf */; };
 		8C72AF2723D47C2500AE1FBC /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C72AF2623D47C2500AE1FBC /* MovieCell.swift */; };
 		8C91C10C23DB15450081E084 /* MenuAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C91C10B23DB15450081E084 /* MenuAnimationExtension.swift */; };
+		8CAD31F123EAD1AA00CB65E9 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD31F023EAD1AA00CB65E9 /* Movies.swift */; };
 		8CAF18D623D4B81700754E6C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAF18D523D4B81700754E6C /* Colors.swift */; };
 		8CAF18D823D4B9F900754E6C /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAF18D723D4B9F900754E6C /* UIViewExtension.swift */; };
 		8CC05EF723D5C7B2000D70B8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC05EF623D5C7B2000D70B8 /* DetailViewController.swift */; };
@@ -59,6 +60,7 @@
 		8C72AF2123D4751A00AE1FBC /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		8C72AF2623D47C2500AE1FBC /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		8C91C10B23DB15450081E084 /* MenuAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAnimationExtension.swift; sourceTree = "<group>"; };
+		8CAD31F023EAD1AA00CB65E9 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 		8CAF18D523D4B81700754E6C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		8CAF18D723D4B9F900754E6C /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		8CC05EF623D5C7B2000D70B8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				8CD1C01523D0833200CCF6A4 /* SceneDelegate.swift */,
 				8C72AF2823D47C6100AE1FBC /* View Controllers */,
 				8C5CC8C723D1D9D90011DB51 /* Movie.swift */,
+				8CAD31F023EAD1AA00CB65E9 /* Movies.swift */,
 				8C72AF2623D47C2500AE1FBC /* MovieCell.swift */,
 				8CAF18D723D4B9F900754E6C /* UIViewExtension.swift */,
 				8C91C10B23DB15450081E084 /* MenuAnimationExtension.swift */,
@@ -465,6 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CC05EF723D5C7B2000D70B8 /* DetailViewController.swift in Sources */,
+				8CAD31F123EAD1AA00CB65E9 /* Movies.swift in Sources */,
 				8CD1C05C23D09E5600CCF6A4 /* CreateItemViewController.swift in Sources */,
 				8CD1C01823D0833200CCF6A4 /* ViewController.swift in Sources */,
 				8C72AF2723D47C2500AE1FBC /* MovieCell.swift in Sources */,
