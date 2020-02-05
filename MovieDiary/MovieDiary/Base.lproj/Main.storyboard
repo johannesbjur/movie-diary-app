@@ -65,10 +65,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QW-On-od1">
-                                                    <rect key="frame" x="35" y="26" width="344" height="128.5"/>
+                                                    <rect key="frame" x="35" y="26" width="344" height="128"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="GZ1-vv-Vfj">
-                                                            <rect key="frame" x="40" y="30" width="204" height="23.5"/>
+                                                            <rect key="frame" x="40" y="30" width="204" height="23"/>
                                                             <attributedString key="attributedText">
                                                                 <fragment content="Title">
                                                                     <attributes>
@@ -80,7 +80,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="EAI-ep-66N" userLabel="Rating Stars">
-                                                            <rect key="frame" x="40" y="61.5" width="142" height="25"/>
+                                                            <rect key="frame" x="40" y="61" width="142" height="25"/>
                                                             <subviews>
                                                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWa-bP-YJ4">
                                                                     <rect key="frame" x="0.0" y="0.0" width="26" height="25"/>
@@ -157,18 +157,44 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="7"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4o-Af-xuy">
+                                                    <rect key="frame" x="35" y="26" width="344" height="128"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2S-eE-BMq">
+                                                            <rect key="frame" x="148" y="40.5" width="48.5" height="47.5"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <state key="normal" image="trash.circle" catalog="system">
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="42" weight="light"/>
+                                                            </state>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="I2S-eE-BMq" firstAttribute="centerX" secondItem="s4o-Af-xuy" secondAttribute="centerX" id="AQi-LO-dOK"/>
+                                                        <constraint firstItem="I2S-eE-BMq" firstAttribute="centerY" secondItem="s4o-Af-xuy" secondAttribute="centerY" id="xJ6-Z1-X8b"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="7"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstItem="s4o-Af-xuy" firstAttribute="top" secondItem="9zR-39-8Ap" secondAttribute="topMargin" constant="15" id="Idh-RT-Yax"/>
                                                 <constraint firstItem="9QW-On-od1" firstAttribute="centerX" secondItem="9zR-39-8Ap" secondAttribute="centerX" id="Qe6-0G-7Lb"/>
                                                 <constraint firstItem="9QW-On-od1" firstAttribute="centerY" secondItem="9zR-39-8Ap" secondAttribute="centerY" id="R7h-FY-7vf"/>
                                                 <constraint firstAttribute="trailing" secondItem="9QW-On-od1" secondAttribute="trailing" constant="35" id="XS6-P6-gTj"/>
+                                                <constraint firstItem="s4o-Af-xuy" firstAttribute="centerY" secondItem="9zR-39-8Ap" secondAttribute="centerY" id="dJp-Y8-dh9"/>
+                                                <constraint firstItem="s4o-Af-xuy" firstAttribute="centerX" secondItem="9zR-39-8Ap" secondAttribute="centerX" id="jsg-hf-eOY"/>
+                                                <constraint firstItem="s4o-Af-xuy" firstAttribute="leading" secondItem="9QW-On-od1" secondAttribute="leading" id="pti-ua-5pK"/>
                                                 <constraint firstItem="9QW-On-od1" firstAttribute="leading" secondItem="9zR-39-8Ap" secondAttribute="leading" constant="35" id="sKH-WY-ZBh"/>
+                                                <constraint firstItem="s4o-Af-xuy" firstAttribute="top" secondItem="9QW-On-od1" secondAttribute="top" id="xpQ-Qv-db5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="movieTitle" destination="GZ1-vv-Vfj" id="US3-mD-X2U"/>
+                                            <outlet property="removeItemBackground" destination="s4o-Af-xuy" id="M5I-9n-3Rw"/>
                                             <outletCollection property="ratingStars" destination="iWa-bP-YJ4" collectionClass="NSMutableArray" id="bMT-Zv-LJy"/>
                                             <outletCollection property="ratingStars" destination="HdI-O8-quc" collectionClass="NSMutableArray" id="rYt-FX-DJq"/>
                                             <outletCollection property="ratingStars" destination="8rJ-2r-QR8" collectionClass="NSMutableArray" id="fZu-e6-msT"/>
@@ -677,6 +703,7 @@
         <image name="plus" catalog="system" width="64" height="56"/>
         <image name="star_arrow_down" width="38" height="25"/>
         <image name="star_arrow_up" width="38" height="23.5"/>
+        <image name="trash.circle" catalog="system" width="64" height="60"/>
         <image name="wave_bg" width="415.5" height="247.5"/>
     </resources>
 </document>

@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var showSearchButton: UIButton!
     @IBOutlet weak var hideSearchButton: UIButton!
-    
+
     
     let segToDetailId   = "segHomeToDetail"
     let movieCellId     = "MovieCell"
@@ -151,6 +151,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let movie = filteredMovies.movies[indexPath.row]
         let movieCell = tableView.dequeueReusableCell( withIdentifier: movieCellId ) as! MovieCell
         
+        movieCell.setStyle()
         movieCell.setData( withMovie: movie )
         
         return movieCell
