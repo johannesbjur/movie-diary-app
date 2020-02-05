@@ -22,6 +22,7 @@ class CreateItemViewController: UIViewController {
     var db: Firestore!
     
     var rating_value: Int = 0
+    var movies = Movies()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,25 +33,18 @@ class CreateItemViewController: UIViewController {
         
         setStyle( textInput: titleInput )
         setStyle( textInput: commentInput )
-        
     }
 
 //    Creates movie object from user input and sends to home screen
     @IBAction func savePressed(_ sender: UIButton) {
         
-        guard let presenter = presentingViewController as? ViewController else { return }
         guard let title     = titleInput.text else { return }
         guard let comment   = commentInput.text else { return }
-        guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let movie = Movie( title: title, comment: comment, rating: rating_value )
-
-//        Save movie to database movie.saveToDb() / movie.save()
-        let moviesRef = db.collection( "users" ).document( uid ).collection( "movies" )
-        moviesRef.addDocument(data: movie.toDict())
+        let movie = Movie( title: title, comment: comment, rating: self.rating_value )
         
-        presenter.movies.append( movie )
-        
+        self.movies.add( movie: movie )
+        self.movies.save()
         
         dismiss( animated: true, completion: nil )
     }
