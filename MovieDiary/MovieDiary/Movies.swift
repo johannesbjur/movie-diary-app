@@ -24,7 +24,15 @@ class Movies {
         self.movies.append( movie )
     }
     
+//    save movies to database
+    func save()  {
+        
+    }
     
+//    get movies from database with completion statement
+    func update() {
+        
+    }
     
     
     
