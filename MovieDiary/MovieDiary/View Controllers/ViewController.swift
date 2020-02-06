@@ -102,7 +102,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func hideSearchBarPressed(_ sender: UIButton) {
         
         searchTextField.text = ""
-        filteredMovies = movies
+        filteredMovies.add(movies: self.movies)
         tableView.reloadData()
         
         hideSearchBar()

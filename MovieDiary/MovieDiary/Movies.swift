@@ -65,7 +65,7 @@ class Movies {
         
         moviesRef.getDocuments() { ( querySnapshot, err ) in
             
-            guard let documents = querySnapshot?.documents else {return}
+            guard let documents = querySnapshot?.documents else { return }
             
             self.empty()
             
