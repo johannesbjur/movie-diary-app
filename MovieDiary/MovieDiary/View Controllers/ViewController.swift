@@ -85,15 +85,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    @IBAction func cellLongPressed(_ sender: UILongPressGestureRecognizer) {
-        
-        if sender.state == .began {
-            self.becomeFirstResponder()
-            sender.view?.superview!.subviews[1].alpha=1
-//            print(sender.view?.superview!.subviews[1])
-            
-        }
-    }
     
 //    MARK:- Menu tap functions
     
@@ -164,6 +155,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         movieCell.setStyle()
         movieCell.setData( withMovie: movie )
         
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.cellLongPressed(_:)))
+        movieCell.addGestureRecognizer(longPressGesture)
+        
         return movieCell
     }
     
@@ -173,6 +167,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let movie = filteredMovies.movies[indexPath.row]
         performSegue( withIdentifier: segToDetailId, sender: movie )
+    }
+    
+    
+    @objc func cellLongPressed(_ sender: UILongPressGestureRecognizer) {
+        
+        if sender.state == .began {
+            
+            let pressLocation = sender.location(in: self.tableView)
+            
+            if let pressIndexPath = self.tableView.indexPathForRow(at: pressLocation) {
+                
+                if let pressedCell = self.tableView.cellForRow(at: pressIndexPath) as? MovieCell {
+                    
+                    let cells = self.tableView.visibleCells as! [MovieCell]
+
+                    for cell in cells {
+                        
+                        UIView.animate(withDuration: 0.3, animations: {
+                            
+                            cell.removeItemBackground.alpha = 0
+                        })
+                    }
+                    
+                    
+                    UIView.animate(withDuration: 0.3, animations: {
+                        
+                        pressedCell.removeItemBackground.alpha = 1
+                    })
+                }
+            }
+        }
     }
     
     
