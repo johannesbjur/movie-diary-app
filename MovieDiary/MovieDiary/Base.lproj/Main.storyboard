@@ -167,6 +167,9 @@
                                                             <state key="normal" image="trash.circle" catalog="system">
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="42" weight="light"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="removeMoviePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="75J-qs-fEo"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

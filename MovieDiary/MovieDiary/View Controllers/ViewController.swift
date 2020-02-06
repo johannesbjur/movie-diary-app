@@ -103,6 +103,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func hideSearchBarPressed(_ sender: UIButton) {
         
         searchTextField.text = ""
+        filteredMovies.empty()
         filteredMovies.add(movies: self.movies)
         tableView.reloadData()
         
@@ -176,30 +177,43 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             let pressLocation = sender.location(in: self.tableView)
             
-            if let pressIndexPath = self.tableView.indexPathForRow(at: pressLocation) {
+            guard let pressIndexPath    = self.tableView.indexPathForRow(at: pressLocation) else { return }
+            guard let pressedCell       = self.tableView.cellForRow(at: pressIndexPath) as? MovieCell else { return }
                 
-                if let pressedCell = self.tableView.cellForRow(at: pressIndexPath) as? MovieCell {
-                    
-                    let cells = self.tableView.visibleCells as! [MovieCell]
-
-                    for cell in cells {
-                        
-                        UIView.animate(withDuration: 0.3, animations: {
-                            
-                            cell.removeItemBackground.alpha = 0
-                        })
-                    }
-                    
+            if let cells = self.tableView.visibleCells as? [MovieCell] {
+                
+                for cell in cells {
                     
                     UIView.animate(withDuration: 0.3, animations: {
                         
-                        pressedCell.removeItemBackground.alpha = 1
+                        cell.removeItemBackground.alpha = 0
                     })
                 }
             }
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                
+                pressedCell.removeItemBackground.alpha = 1
+            })
         }
     }
     
+    @IBAction func removeMoviePressed(_ sender: UIButton) {
+        
+        guard let cell      = sender.superview?.superview?.superview as? MovieCell else { return }
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        guard let index     = indexPath[1] as? Int else { return }
+        
+        let cellMovie = self.filteredMovies.movies[index]
+        
+        self.movies.delete( movie: cellMovie ) {
+            
+            self.filteredMovies.empty()
+            self.filteredMovies.add( movies: self.movies )
+            self.tableView.reloadData()
+        }
+        
+    }
     
 //    MARK:- Text field search function
     
