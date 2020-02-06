@@ -84,7 +84,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             destVC.movie = sender as? Movie
         }
     }
+    
+    @IBAction func cellLongPressed(_ sender: UILongPressGestureRecognizer) {
         
+        if sender.state == .began {
+            self.becomeFirstResponder()
+            sender.view?.superview!.subviews[1].alpha=1
+//            print(sender.view?.superview!.subviews[1])
+            
+        }
+    }
+    
 //    MARK:- Menu tap functions
     
     @IBAction func menuPressed(_ sender: UIButton) {

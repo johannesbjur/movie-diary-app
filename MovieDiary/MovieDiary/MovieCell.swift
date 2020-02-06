@@ -32,6 +32,8 @@ class MovieCell: UITableViewCell {
         }
     }
     
+
+    
     func setStyle() {
         
         removeItemBackground.isHidden = false

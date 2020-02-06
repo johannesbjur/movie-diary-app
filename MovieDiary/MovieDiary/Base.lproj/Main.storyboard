@@ -141,6 +141,7 @@
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstItem="EAI-ep-66N" firstAttribute="top" secondItem="GZ1-vv-Vfj" secondAttribute="bottom" constant="8" id="23W-au-11K"/>
                                                         <constraint firstAttribute="trailing" secondItem="UwF-gv-7x2" secondAttribute="trailing" constant="30" id="8wh-vQ-ZjF"/>
@@ -156,6 +157,9 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="7"/>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="foP-0v-EdU" appends="YES" id="F6h-SI-ds2"/>
+                                                    </connections>
                                                 </view>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4o-Af-xuy">
                                                     <rect key="frame" x="35" y="26" width="344" height="128"/>
@@ -169,6 +173,7 @@
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstItem="I2S-eE-BMq" firstAttribute="centerX" secondItem="s4o-Af-xuy" secondAttribute="centerX" id="AQi-LO-dOK"/>
                                                         <constraint firstItem="I2S-eE-BMq" firstAttribute="centerY" secondItem="s4o-Af-xuy" secondAttribute="centerY" id="xJ6-Z1-X8b"/>
@@ -356,6 +361,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="foP-0v-EdU">
+                    <connections>
+                        <action selector="cellLongPressed:" destination="BYZ-38-t0r" id="FEC-2w-B5m"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="112.5"/>
         </scene>
