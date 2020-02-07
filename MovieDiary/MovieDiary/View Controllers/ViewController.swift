@@ -30,6 +30,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var movies = Movies()
     var filteredMovies = Movies()
+    
+    var latestCreatedMovie: Movie?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,15 +72,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         movies.update() { () in
             
-            self.filteredMovies.empty()
-            self.filteredMovies.add( movies: self.movies )
-            self.tableView.reloadData()
+            if let newSaveMovie = self.latestCreatedMovie {
+                
+                self.filteredMovies.movies.insert(newSaveMovie, at: 0)
+                self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .right)
+            }
+            else {
+                
+                self.filteredMovies.empty()
+                self.filteredMovies.add( movies: self.movies )
+                self.tableView.reloadData()
+            }
+            
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         self.tableView.reloadData()
+        
+        latestCreatedMovie = nil
         
         if segue.identifier == segToDetailId {
             let destVC = segue.destination as! DetailViewController
@@ -141,9 +154,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if let CIController = segue.source as? CreateItemViewController,
            let movie = CIController.movieToSave {
-                
-//            self.filteredMovies.movies.append(movie)
-//            self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .right)            
+
+            latestCreatedMovie = movie
         }
     }
     

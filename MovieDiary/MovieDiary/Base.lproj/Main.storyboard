@@ -82,7 +82,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="EAI-ep-66N" userLabel="Rating Stars">
                                                             <rect key="frame" x="40" y="61" width="142" height="25"/>
                                                             <subviews>
-                                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWa-bP-YJ4">
+                                                                <button opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWa-bP-YJ4">
                                                                     <rect key="frame" x="0.0" y="0.0" width="26" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="26" id="8GT-Up-KMT"/>
@@ -90,7 +90,7 @@
                                                                     </constraints>
                                                                     <state key="normal" backgroundImage="empty_star_colored"/>
                                                                 </button>
-                                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdI-O8-quc">
+                                                                <button opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdI-O8-quc">
                                                                     <rect key="frame" x="29" y="0.0" width="26" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="25" id="0U4-su-3d7"/>
@@ -98,7 +98,7 @@
                                                                     </constraints>
                                                                     <state key="normal" backgroundImage="empty_star_colored"/>
                                                                 </button>
-                                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rJ-2r-QR8">
+                                                                <button opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rJ-2r-QR8">
                                                                     <rect key="frame" x="58" y="0.0" width="26" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="25" id="Sfk-se-DK9"/>
@@ -106,7 +106,7 @@
                                                                     </constraints>
                                                                     <state key="normal" backgroundImage="empty_star_colored"/>
                                                                 </button>
-                                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dg4-NX-Hqd">
+                                                                <button opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dg4-NX-Hqd">
                                                                     <rect key="frame" x="87" y="0.0" width="26" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="25" id="E4v-Y7-ust"/>
@@ -114,7 +114,7 @@
                                                                     </constraints>
                                                                     <state key="normal" backgroundImage="empty_star_colored"/>
                                                                 </button>
-                                                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ukr-Jf-bqk">
+                                                                <button opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ukr-Jf-bqk">
                                                                     <rect key="frame" x="116" y="0.0" width="26" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="25" id="B80-C8-c9y"/>
