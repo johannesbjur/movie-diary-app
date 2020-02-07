@@ -33,6 +33,8 @@ class CreateItemViewController: UIViewController {
         
         setStyle( textInput: titleInput )
         setStyle( textInput: commentInput )
+        
+        titleInput.becomeFirstResponder()
     }
 
 //    Creates movie object from user input and sends to home screen

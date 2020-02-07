@@ -78,6 +78,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        self.tableView.reloadData()
+        
         if segue.identifier == segToDetailId {
             let destVC = segue.destination as! DetailViewController
             
@@ -159,6 +161,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.cellLongPressed(_:)))
         movieCell.addGestureRecognizer(longPressGesture)
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.cellRemoveBgTap(_:)))
+        movieCell.removeItemBackground.addGestureRecognizer(tapGesture)
+        
         return movieCell
     }
     
@@ -167,9 +172,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let movie = filteredMovies.movies[indexPath.row]
+        
         performSegue( withIdentifier: segToDetailId, sender: movie )
     }
+
+//    MARK:- Remove cell functions
     
+    @objc func cellRemoveBgTap(_ sender: UITapGestureRecognizer) {
+        
+        let pressLocation = sender.location(in: self.tableView)
+        
+        guard let pressIndexPath    = self.tableView.indexPathForRow(at: pressLocation) else { return }
+        guard let pressedCell       = self.tableView.cellForRow(at: pressIndexPath) as? MovieCell else { return }
+            
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            pressedCell.removeItemBackground.alpha = 0
+        })
+    }
     
     @objc func cellLongPressed(_ sender: UILongPressGestureRecognizer) {
         
@@ -210,7 +230,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             self.filteredMovies.empty()
             self.filteredMovies.add( movies: self.movies )
-            self.tableView.reloadData()
+            self.tableView.deleteRows( at: [indexPath], with: .left )
+//            self.tableView.reloadData()
         }
         
     }
