@@ -19,13 +19,10 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        commentLabel.font = UIFont(name: "Montserrat-SemiBoldItalic", size: 36.0)
-        
         if let movie = movie {
         
             setData( withMovie: movie )
         }
-        
     }
     
     func setData( withMovie movie: Movie ) {
@@ -44,7 +41,6 @@ class DetailViewController: UIViewController {
                 star.setBackgroundImage( UIImage.init( named: "empty_star_colored" ), for: .normal )
             }
         }
-        
     }
     
 

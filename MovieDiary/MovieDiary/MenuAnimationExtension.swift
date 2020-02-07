@@ -44,6 +44,9 @@ extension ViewController {
             UIView.animate(withDuration: 0.5, animations: {
                 
                 self.view.layoutIfNeeded()
+                
+                self.sortByHighestBtn.alpha = 1.0
+                self.sortByLowestBtn.alpha = 0.0
             })
         })
     }

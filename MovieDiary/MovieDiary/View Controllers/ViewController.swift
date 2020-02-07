@@ -28,14 +28,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var db: Firestore!
     
-    var movies: [Movie] = []
-    var filteredMovies: [Movie] = []
+    var movies = Movies()
+    var filteredMovies = Movies()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateMovies()
-
+        Auth.auth().signInAnonymously() { ( authResult, error ) in
+            
+            guard let user = authResult?.user else { return }
+//            let isAnonymous = user.isAnonymous  // true
+//            let uid = user.uid
+        }
         
         view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
         
@@ -56,19 +60,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         bottomLine.backgroundColor  = UIColor.white.cgColor
         searchView.layer.addSublayer( bottomLine )
 
-        
-        tableView.delegate      = self
-        tableView.dataSource    = self
-        tableView.rowHeight     = 180
-        
-        
-        searchTextField.delegate = self
-        searchTextField.addTarget( self, action: #selector( self.textFieldDidChange(_:) ), for: UIControl.Event.editingChanged )
+        searchTextField.delegate    = self
+        tableView.delegate          = self
+        tableView.dataSource        = self
+        tableView.rowHeight         = 180
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
-        updateMovies()
+        movies.update() { () in
+            
+            self.filteredMovies.empty()
+            self.filteredMovies.add( movies: self.movies )
+            self.tableView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,34 +84,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             destVC.movie = sender as? Movie
         }
     }
-    
-//    MARK:- FireStore functions
-    
-    func updateMovies() {
         
-        db = Firestore.firestore()
-        let moviesRef = db.collection( "movies" )
-        
-        moviesRef.addSnapshotListener() { (snapshot, error) in
-            
-            guard let documents = snapshot?.documents else { return }
-            
-            self.movies = []
-            
-            for document in documents {
-                
-                if let movie = Movie( snapshot: document ) {
-                    
-                    self.movies.append( movie )
-                }
-            }
-                
-            self.filteredMovies = self.movies
-            self.tableView.reloadData()
-        }
-    }
-    
-    
 //    MARK:- Menu tap functions
     
     @IBAction func menuPressed(_ sender: UIButton) {
@@ -133,7 +111,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func sortByHighestPressed(_ sender: UIButton) {
         
-        filteredMovies = movies.sorted(by: { $0.rating > $1.rating })
+        filteredMovies.movies = movies.movies.sorted(by: { $0.rating > $1.rating })
         tableView.reloadData()
         
         UIView.animate(withDuration: 0.5, animations: {
@@ -145,7 +123,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func sortByLowestPressed(_ sender: UIButton) {
         
-        filteredMovies = movies.sorted(by: { $0.rating < $1.rating })
+        filteredMovies.movies = movies.movies.sorted(by: { $0.rating < $1.rating })
         tableView.reloadData()
         
         UIView.animate(withDuration: 0.5, animations: {
@@ -164,13 +142,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //    Number of rows in table view = to number of movie objects in movies
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return filteredMovies.count
+        return filteredMovies.movies.count
     }
     
 //    Goes through all cells in tableview and sets data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let movie = filteredMovies[indexPath.row]
+        let movie = filteredMovies.movies[indexPath.row]
         let movieCell = tableView.dequeueReusableCell( withIdentifier: movieCellId ) as! MovieCell
         
         movieCell.setData( withMovie: movie )
@@ -179,38 +157,40 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
+//    Send selected movie object before segue
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let movie = filteredMovies[indexPath.row]
+        let movie = filteredMovies.movies[indexPath.row]
         performSegue( withIdentifier: segToDetailId, sender: movie )
     }
     
     
 //    MARK:- Text field search function
     
-    @objc func textFieldDidChange(_ textField: UITextField) {
+    @IBAction func searchFieldDidChange(_ sender: UITextField) {
         
-        guard let text = textField.text else {return}
+        guard let text = sender.text else { return }
         
+        filteredMovies.empty()
+
         if text == "" {
-            filteredMovies = movies
-        }
-        else {
-            filteredMovies = []
-        }
-        
-        for movie in movies {
             
-            let range  = movie.title.lowercased().range(of: text, options: .caseInsensitive, range: nil, locale: nil)
+            filteredMovies.add( movies: movies )
+        }
+
+        for movie in movies.movies {
+
+            let range  = movie.title.lowercased().range( of: text, options: .caseInsensitive, range: nil, locale: nil )
             
             if range != nil {
                 
-                self.filteredMovies.append(movie)
+                self.filteredMovies.add( movie: movie )
             }
         }
         
         tableView.reloadData()
     }
+
     
     
     
