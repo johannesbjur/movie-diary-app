@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var showSearchButton: UIButton!
     @IBOutlet weak var hideSearchButton: UIButton!
-    
+
     
     let segToDetailId   = "segHomeToDetail"
     let movieCellId     = "MovieCell"
@@ -30,6 +30,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var movies = Movies()
     var filteredMovies = Movies()
+    
+    var latestCreatedMovie: Movie?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,13 +72,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         movies.update() { () in
             
-            self.filteredMovies.empty()
-            self.filteredMovies.add( movies: self.movies )
-            self.tableView.reloadData()
+            if let newSaveMovie = self.latestCreatedMovie {
+                
+                self.filteredMovies.movies.insert(newSaveMovie, at: 0)
+                self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .right)
+            }
+            else {
+                
+                self.filteredMovies.empty()
+                self.filteredMovies.add( movies: self.movies )
+                self.tableView.reloadData()
+            }
+            
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        self.tableView.reloadData()
+        
+        latestCreatedMovie = nil
         
         if segue.identifier == segToDetailId {
             let destVC = segue.destination as! DetailViewController
@@ -84,7 +99,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             destVC.movie = sender as? Movie
         }
     }
-        
+    
+    
 //    MARK:- Menu tap functions
     
     @IBAction func menuPressed(_ sender: UIButton) {
@@ -102,7 +118,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func hideSearchBarPressed(_ sender: UIButton) {
         
         searchTextField.text = ""
-        filteredMovies = movies
+        filteredMovies.empty()
+        filteredMovies.add(movies: self.movies)
         tableView.reloadData()
         
         hideSearchBar()
@@ -133,7 +150,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
     
-    @IBAction func unwindToHome( segue: UIStoryboardSegue ) {}
+    @IBAction func unwindToHome( segue: UIStoryboardSegue ) {
+        
+        if let CIController = segue.source as? CreateItemViewController,
+           let movie = CIController.movieToSave {
+
+            latestCreatedMovie = movie
+        }
+    }
     
     
     
@@ -151,7 +175,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let movie = filteredMovies.movies[indexPath.row]
         let movieCell = tableView.dequeueReusableCell( withIdentifier: movieCellId ) as! MovieCell
         
+        movieCell.setStyle()
         movieCell.setData( withMovie: movie )
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.cellLongPressed(_:)))
+        movieCell.addGestureRecognizer(longPressGesture)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.cellRemoveBgTap(_:)))
+        movieCell.removeItemBackground.addGestureRecognizer(tapGesture)
         
         return movieCell
     }
@@ -161,9 +192,69 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let movie = filteredMovies.movies[indexPath.row]
+        
         performSegue( withIdentifier: segToDetailId, sender: movie )
     }
+
+//    MARK:- Remove cell functions
     
+    @objc func cellRemoveBgTap(_ sender: UITapGestureRecognizer) {
+        
+        let pressLocation = sender.location(in: self.tableView)
+        
+        guard let pressIndexPath    = self.tableView.indexPathForRow(at: pressLocation) else { return }
+        guard let pressedCell       = self.tableView.cellForRow(at: pressIndexPath) as? MovieCell else { return }
+            
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            pressedCell.removeItemBackground.alpha = 0
+        })
+    }
+    
+    @objc func cellLongPressed(_ sender: UILongPressGestureRecognizer) {
+        
+        if sender.state == .began {
+            
+            let pressLocation = sender.location(in: self.tableView)
+            
+            guard let pressIndexPath    = self.tableView.indexPathForRow(at: pressLocation) else { return }
+            guard let pressedCell       = self.tableView.cellForRow(at: pressIndexPath) as? MovieCell else { return }
+                
+            if let cells = self.tableView.visibleCells as? [MovieCell] {
+                
+                for cell in cells {
+                    
+                    UIView.animate(withDuration: 0.3, animations: {
+                        
+                        cell.removeItemBackground.alpha = 0
+                    })
+                }
+            }
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                
+                pressedCell.removeItemBackground.alpha = 1
+            })
+        }
+    }
+    
+    @IBAction func removeMoviePressed(_ sender: UIButton) {
+        
+        guard let cell      = sender.superview?.superview?.superview as? MovieCell else { return }
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        guard let index     = indexPath[1] as? Int else { return }
+        
+        let cellMovie = self.filteredMovies.movies[index]
+        
+        self.movies.delete( movie: cellMovie ) {
+            
+            self.filteredMovies.empty()
+            self.filteredMovies.add( movies: self.movies )
+            self.tableView.deleteRows( at: [indexPath], with: .left )
+//            self.tableView.reloadData()
+        }
+        
+    }
     
 //    MARK:- Text field search function
     
