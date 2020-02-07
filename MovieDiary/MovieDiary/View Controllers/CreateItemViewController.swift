@@ -17,12 +17,14 @@ class CreateItemViewController: UIViewController {
     
     @IBOutlet var starsArray: [UIButton]!
     
-    let segToHomeId = "segToHome"
-    
     var db: Firestore!
     
     var rating_value: Int = 0
     var movies = Movies()
+    
+    let segToHomeId = "segToHome"
+    
+    var movieToSave: Movie?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +47,12 @@ class CreateItemViewController: UIViewController {
         
         let movie = Movie( title: title, comment: comment, rating: self.rating_value )
         
+        movieToSave = movie
+        
         self.movies.add( movie: movie )
         self.movies.save()
         
-        dismiss( animated: true, completion: nil )
+        performSegue(withIdentifier: segToHomeId, sender: self)
     }
     
 //    Handles graphics for rating stars

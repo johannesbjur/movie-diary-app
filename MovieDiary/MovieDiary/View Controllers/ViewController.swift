@@ -137,7 +137,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
     
-    @IBAction func unwindToHome( segue: UIStoryboardSegue ) {}
+    @IBAction func unwindToHome( segue: UIStoryboardSegue ) {
+        
+        if let CIController = segue.source as? CreateItemViewController,
+           let movie = CIController.movieToSave {
+                
+//            self.filteredMovies.movies.append(movie)
+//            self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .right)            
+        }
+    }
     
     
     

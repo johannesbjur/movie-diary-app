@@ -404,7 +404,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="21" scale="large" weight="bold"/>
                                 </state>
                                 <connections>
-                                    <segue destination="kTO-V9-Dfi" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="aG5-KX-G5r"/>
+                                    <segue destination="kTO-V9-Dfi" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="gaF-ah-fgf"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Comment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mYC-8l-46x" userLabel="Comment input">
@@ -536,6 +536,7 @@
                         <outletCollection property="starsArray" destination="PxH-z1-Bub" collectionClass="NSMutableArray" id="oau-a6-ovW"/>
                         <outletCollection property="starsArray" destination="Ed7-5D-7Tt" collectionClass="NSMutableArray" id="FOv-vC-K0n"/>
                         <outletCollection property="starsArray" destination="Xqi-rO-YoH" collectionClass="NSMutableArray" id="YyK-Fv-Cie"/>
+                        <segue destination="kTO-V9-Dfi" kind="unwind" identifier="segToHome" unwindAction="unwindToHomeWithSegue:" id="9nu-4u-sYn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kvc-M1-xPg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
