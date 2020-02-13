@@ -45,7 +45,7 @@ class CreateItemViewController: UIViewController {
         guard let title     = titleInput.text else { return }
         guard let comment   = commentInput.text else { return }
         
-        let movie = Movie( title: title, comment: comment, rating: self.rating_value )
+        let movie = Movie( title: title.capitalized, comment: comment.capitalized, rating: self.rating_value )
         
         movieToSave = movie
         
