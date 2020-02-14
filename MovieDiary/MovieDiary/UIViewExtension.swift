@@ -11,6 +11,8 @@ import UIKit
 
 extension UIView {
     
+    
+//    Adds gradient to view
     func setGradientBackground( colorOne: UIColor, colorTwo: UIColor ) {
         
         let gradientBackground = CAGradientLayer()

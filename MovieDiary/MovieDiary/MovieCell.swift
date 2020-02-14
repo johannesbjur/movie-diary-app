@@ -33,7 +33,7 @@ class MovieCell: UITableViewCell {
     }
     
 
-    
+//    Adds blur effect for remove item background
     func setStyle() {
         
         removeItemBackground.isHidden = false

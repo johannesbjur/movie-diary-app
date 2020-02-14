@@ -70,8 +70,9 @@ class CreateItemViewController: UIViewController {
             }
         }
     }
+
     
-// TODO move to shared file / extension
+//    Sets custom style for text inputs
     func setStyle( textInput: UITextField ) {
         
         // Create bottom border
