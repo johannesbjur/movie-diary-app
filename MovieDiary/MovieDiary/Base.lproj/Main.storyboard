@@ -662,7 +662,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBL-dZ-xcd">
-                                <rect key="frame" x="60" y="787" width="113" height="25"/>
+                                <rect key="frame" x="60" y="797" width="113" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="2Pg-eQ-KJb"/>
                                     <constraint firstAttribute="width" constant="113" id="izQ-xY-L2f"/>
@@ -679,7 +679,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="FKh-QZ-Ff9">
-                                <rect key="frame" x="60" y="817" width="101" height="23.5"/>
+                                <rect key="frame" x="60" y="827" width="101" height="23.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23.5" id="02B-Ke-Los"/>
                                     <constraint firstAttribute="width" constant="101" id="WVD-GX-Pxc"/>
@@ -703,7 +703,7 @@
                             <constraint firstAttribute="trailing" secondItem="8Gb-Su-3bQ" secondAttribute="trailing" constant="114" id="46C-Tu-U7Z"/>
                             <constraint firstAttribute="trailing" secondItem="1l9-eV-ek7" secondAttribute="trailing" id="5hA-vo-FVg"/>
                             <constraint firstItem="FKh-QZ-Ff9" firstAttribute="leading" secondItem="xe9-9k-1Pp" secondAttribute="leading" constant="60" id="756-Wm-H5K"/>
-                            <constraint firstItem="HwZ-8s-VIh" firstAttribute="top" secondItem="WBL-dZ-xcd" secondAttribute="bottom" constant="50" id="9Vf-ag-lZO"/>
+                            <constraint firstItem="HwZ-8s-VIh" firstAttribute="top" secondItem="WBL-dZ-xcd" secondAttribute="bottom" constant="40" id="9Vf-ag-lZO"/>
                             <constraint firstItem="8oi-4S-ifX" firstAttribute="top" secondItem="6dE-R5-9Gf" secondAttribute="bottom" constant="71" id="HPR-Eq-hYi"/>
                             <constraint firstItem="FKh-QZ-Ff9" firstAttribute="top" secondItem="WBL-dZ-xcd" secondAttribute="bottom" constant="5" id="IwB-bG-K6B"/>
                             <constraint firstItem="8oi-4S-ifX" firstAttribute="leading" secondItem="xe9-9k-1Pp" secondAttribute="leading" constant="35" id="KIK-ce-brV"/>
