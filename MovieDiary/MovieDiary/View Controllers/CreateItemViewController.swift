@@ -45,7 +45,7 @@ class CreateItemViewController: UIViewController {
         guard let title     = titleInput.text else { return }
         guard let comment   = commentInput.text else { return }
         
-        let movie = Movie( title: title, comment: comment, rating: self.rating_value )
+        let movie = Movie( title: title.capitalized, comment: comment.capitalized, rating: self.rating_value )
         
         movieToSave = movie
         
@@ -70,8 +70,9 @@ class CreateItemViewController: UIViewController {
             }
         }
     }
+
     
-// TODO move to shared file / extension
+//    Sets custom style for text inputs
     func setStyle( textInput: UITextField ) {
         
         // Create bottom border

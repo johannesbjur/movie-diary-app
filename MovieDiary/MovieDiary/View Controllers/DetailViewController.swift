@@ -13,6 +13,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var ratingStars: [UIButton]!
     @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var movie: Movie?
     
@@ -23,6 +24,7 @@ class DetailViewController: UIViewController {
         
             titleLabel.text     = movie.title
             commentLabel.text   = movie.comment
+            dateLabel.text      = movie.date
             
             for star in ratingStars {
                 

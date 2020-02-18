@@ -28,7 +28,7 @@ class Movie {
     }
     
     
-//    Constructor using item from database.
+//    Constructor using item from database
 //    Returns nil if a value is missing
     init?( snapshot: QueryDocumentSnapshot  ) {
         
@@ -46,6 +46,7 @@ class Movie {
         self.date       = date
     }
     
+//    Returns movie item as dictionary to save in firebase
     func toDict() -> [String: Any] {
         
         return [

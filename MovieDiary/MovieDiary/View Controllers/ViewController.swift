@@ -45,6 +45,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         view.setGradientBackground( colorOne: Colors.pink, colorTwo: Colors.purple )
         
+//        Hides menu items
         sortByHighestBtn.alpha  = 0
         sortByLowestBtn.alpha   = 0
         searchView.alpha        = 0
@@ -70,6 +71,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidAppear(_ animated: Bool) {
         
+        
+//        Update movies array from database
+//        or add movie from create item view with animation
         movies.update() { () in
             
             if let newSaveMovie = self.latestCreatedMovie {
@@ -83,10 +87,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.filteredMovies.add( movies: self.movies )
                 self.tableView.reloadData()
             }
-            
         }
     }
-    
+
+//    Send selected movie from tableview to detailed view controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         self.tableView.reloadData()
@@ -126,6 +130,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         hideMenu()
     }
     
+//    Sorts table view by highest rating
     @IBAction func sortByHighestPressed(_ sender: UIButton) {
         
         filteredMovies.movies = movies.movies.sorted(by: { $0.rating > $1.rating })
@@ -138,6 +143,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
     
+//    Sorts table view by lowest rating
     @IBAction func sortByLowestPressed(_ sender: UIButton) {
         
         filteredMovies.movies = movies.movies.sorted(by: { $0.rating < $1.rating })
@@ -155,6 +161,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let CIController = segue.source as? CreateItemViewController,
            let movie = CIController.movieToSave {
 
+//            Saves newly created movie item to be added to table view with animation
             latestCreatedMovie = movie
         }
     }
@@ -169,7 +176,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return filteredMovies.movies.count
     }
     
-//    Goes through all cells in tableview and sets data
+//    Goes through all cells in tableview and sets data to cells
+//    and adds long press gestures
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let movie = filteredMovies.movies[indexPath.row]
@@ -198,6 +206,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 //    MARK:- Remove cell functions
     
+
+//    Hides remove item icon and background when blur background is tapped
     @objc func cellRemoveBgTap(_ sender: UITapGestureRecognizer) {
         
         let pressLocation = sender.location(in: self.tableView)
@@ -211,6 +221,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
     
+//    Shows the remove item icon and background
     @objc func cellLongPressed(_ sender: UILongPressGestureRecognizer) {
         
         if sender.state == .began {
@@ -238,6 +249,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+//    Removes movie from database and table view with animation
     @IBAction func removeMoviePressed(_ sender: UIButton) {
         
         guard let cell      = sender.superview?.superview?.superview as? MovieCell else { return }
@@ -251,13 +263,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.filteredMovies.empty()
             self.filteredMovies.add( movies: self.movies )
             self.tableView.deleteRows( at: [indexPath], with: .left )
-//            self.tableView.reloadData()
         }
-        
     }
     
 //    MARK:- Text field search function
     
+//    Uses range to check if any movie title contains search field text whenever search field text changes
     @IBAction func searchFieldDidChange(_ sender: UITextField) {
         
         guard let text = sender.text else { return }

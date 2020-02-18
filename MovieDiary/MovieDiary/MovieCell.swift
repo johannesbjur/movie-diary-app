@@ -17,7 +17,7 @@ class MovieCell: UITableViewCell {
     
     func setData( withMovie movie: Movie ) {
         
-        self.movieTitle.text = movie.title.capitalized
+        self.movieTitle.text = movie.title
         
         for star in ratingStars {
             
@@ -33,7 +33,7 @@ class MovieCell: UITableViewCell {
     }
     
 
-    
+//    Adds blur effect for remove item background
     func setStyle() {
         
         removeItemBackground.isHidden = false
