@@ -50,7 +50,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="34" scale="default" weight="medium"/>
                                 </state>
                                 <connections>
-                                    <segue destination="B0j-lq-g5v" kind="presentation" modalPresentationStyle="fullScreen" id="IfT-2n-j1A"/>
+                                    <segue destination="B0j-lq-g5v" kind="presentation" identifier="segToCreateItem" modalPresentationStyle="fullScreen" id="IfT-2n-j1A"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FYQ-BU-rOB">
@@ -188,6 +188,9 @@
                                                                     <state key="normal" image="pencil.circle" catalog="system">
                                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="42"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="editMoviePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Sq-iU-Go7"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>

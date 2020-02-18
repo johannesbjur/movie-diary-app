@@ -15,6 +15,8 @@ class Movie {
     let comment: String
     let rating: Int
     let date: String
+    var fireStoreId: String?
+    
     
     init( title: String, comment: String, rating: Int ) {
         
@@ -39,11 +41,11 @@ class Movie {
         guard let rating    = snapshotValue["rating"] as? Int else { return nil }
         guard let date      = snapshotValue["date"] as? String else { return nil }
         
-        
-        self.title      = title
-        self.comment    = comment
-        self.rating     = rating
-        self.date       = date
+        self.title          = title
+        self.comment        = comment
+        self.rating         = rating
+        self.date           = date
+        self.fireStoreId    = snapshot.documentID
     }
     
 //    Returns movie item as dictionary to save in firebase

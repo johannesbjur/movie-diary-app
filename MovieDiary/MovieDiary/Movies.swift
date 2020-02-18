@@ -51,7 +51,15 @@ class Movies {
         
         for movie in movies {
             
-            moviesRef.addDocument( data: movie.toDict() )
+            if let movId = movie.fireStoreId {
+                
+                moviesRef.document( movId ).updateData(movie.toDict())
+            }
+            else {
+                
+                movie.fireStoreId = moviesRef.addDocument( data: movie.toDict() ).documentID
+            }
+            
         }
     }
     
@@ -73,7 +81,7 @@ class Movies {
                 document.reference.delete()
             }
             
-            if let index = self.movies.firstIndex(where: {$0.title == movie.title}) {
+            if let index = self.movies.firstIndex( where: { $0.title == movie.title } ) {
                 
                 self.movies.remove(at: index)
             }
@@ -84,7 +92,7 @@ class Movies {
     
 //    Gets movies from database with completion statement
 //    accepts completion handler used for updating tableview data
-    func update( completion: @escaping () -> () ) {
+    func getAll( completion: @escaping () -> () ) {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
