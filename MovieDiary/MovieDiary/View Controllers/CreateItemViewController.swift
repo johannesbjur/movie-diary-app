@@ -43,6 +43,7 @@ class CreateItemViewController: UIViewController {
             
             titleInput.text     = movieToEdit.title
             commentInput.text   = movieToEdit.comment
+            self.rating_value   = movieToEdit.rating
             ratingSetTo( value: movieToEdit.rating )
         }
         
@@ -52,9 +53,11 @@ class CreateItemViewController: UIViewController {
     @IBAction func savePressed(_ sender: UIButton) {
         
         guard let title     = titleInput.text else { return }
-        guard let comment   = commentInput.text else { return }
+        guard var comment   = commentInput.text else { return }
         
-        let movie = Movie( title: title.capitalized, comment: comment.capitalized, rating: self.rating_value )
+        comment = comment.prefix(1).uppercased() + comment.dropFirst()
+        
+        let movie = Movie( title: title.capitalized, comment: comment, rating: self.rating_value )
         
 //        If movie is being edited save set firestore id
 //        else add to movieToSave for tableview animation
