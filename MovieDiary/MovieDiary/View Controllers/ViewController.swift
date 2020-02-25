@@ -23,8 +23,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var hideSearchButton: UIButton!
 
     
-    let segToDetailId   = "segHomeToDetail"
-    let movieCellId     = "MovieCell"
+    let segToDetailId       = "segHomeToDetail"
+    let segToCreateItemId   = "segToCreateItem"
+    let movieCellId         = "MovieCell"
     
     var db: Firestore!
     
@@ -74,7 +75,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
 //        Update movies array from database
 //        or add movie from create item view with animation
-        movies.update() { () in
+        movies.getAll() { () in
             
             if let newSaveMovie = self.latestCreatedMovie {
                 
@@ -98,9 +99,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         latestCreatedMovie = nil
         
         if segue.identifier == segToDetailId {
-            let destVC = segue.destination as! DetailViewController
+            guard let detailVC = segue.destination as? DetailViewController else { return }
             
-            destVC.movie = sender as? Movie
+            detailVC.movie = sender as? Movie
+        }
+        else if segue.identifier == segToCreateItemId {
+            guard let createVC = segue.destination as? CreateItemViewController else { return }
+            
+            guard let movieToEdit = sender as? Movie else { return }
+            
+            createVC.movieToEdit = movieToEdit
         }
     }
     
@@ -176,7 +184,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return filteredMovies.movies.count
     }
     
-//    Goes through all cells in tableview and sets data to cells
+//    Goes through all cells in tableview and adds data to cells
 //    and adds long press gestures
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -204,7 +212,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         performSegue( withIdentifier: segToDetailId, sender: movie )
     }
 
-//    MARK:- Remove cell functions
+//    MARK:- Cell action functions
     
 
 //    Hides remove item icon and background when blur background is tapped
@@ -252,11 +260,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //    Removes movie from database and table view with animation
     @IBAction func removeMoviePressed(_ sender: UIButton) {
         
-        guard let cell      = sender.superview?.superview?.superview as? MovieCell else { return }
+//        TODO: make function/extension? + find better wat to find parent views
+        guard let cell      = sender.superview?.superview?.superview?.superview as? MovieCell else { return }
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        guard let index     = indexPath[1] as? Int else { return }
         
-        let cellMovie = self.filteredMovies.movies[index]
+        let index       = indexPath[1]
+        let cellMovie   = self.filteredMovies.movies[index]
         
         self.movies.delete( movie: cellMovie ) {
             
@@ -265,6 +274,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.tableView.deleteRows( at: [indexPath], with: .left )
         }
     }
+    
+    @IBAction func editMoviePressed(_ sender: UIButton) {
+        
+//        TODO: make function/extension? + find better wat to find parent views
+        guard let cell      = sender.superview?.superview?.superview?.superview as? MovieCell else { return }
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        
+        let index       = indexPath[1]
+        let cellMovie   = self.filteredMovies.movies[index]
+        
+        performSegue(withIdentifier: segToCreateItemId, sender: cellMovie)
+    }
+    
     
 //    MARK:- Text field search function
     

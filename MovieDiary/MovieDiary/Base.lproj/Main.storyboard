@@ -50,7 +50,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="34" scale="default" weight="medium"/>
                                 </state>
                                 <connections>
-                                    <segue destination="B0j-lq-g5v" kind="presentation" modalPresentationStyle="fullScreen" id="IfT-2n-j1A"/>
+                                    <segue destination="B0j-lq-g5v" kind="presentation" identifier="segToCreateItem" modalPresentationStyle="fullScreen" id="IfT-2n-j1A"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FYQ-BU-rOB">
@@ -161,22 +161,45 @@
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4o-Af-xuy">
                                                     <rect key="frame" x="35" y="26" width="344" height="128"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2S-eE-BMq">
-                                                            <rect key="frame" x="148" y="40.5" width="48.5" height="47.5"/>
-                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <state key="normal" image="trash.circle" catalog="system">
-                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="42" weight="light"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="removeMoviePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="75J-qs-fEo"/>
-                                                            </connections>
-                                                        </button>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="3EQ-SY-Yrn">
+                                                            <rect key="frame" x="98.5" y="40.5" width="147" height="47.5"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2S-eE-BMq" userLabel="Delete icon">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="48.5" height="47.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="47.5" id="5LI-Wa-gdS"/>
+                                                                        <constraint firstAttribute="width" constant="48.5" id="FyX-ur-eXc"/>
+                                                                    </constraints>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <state key="normal" image="trash.circle" catalog="system">
+                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="42" weight="light"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="removeMoviePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="75J-qs-fEo"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcg-Ds-B89" userLabel="Edit icon">
+                                                                    <rect key="frame" x="98.5" y="0.0" width="48.5" height="47.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="47.5" id="TA0-sC-qvT"/>
+                                                                        <constraint firstAttribute="width" constant="48.5" id="hQB-9l-UER"/>
+                                                                    </constraints>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <state key="normal" image="pencil.circle" catalog="system">
+                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="42"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="editMoviePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Sq-iU-Go7"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <gestureRecognizers/>
                                                     <constraints>
-                                                        <constraint firstItem="I2S-eE-BMq" firstAttribute="centerX" secondItem="s4o-Af-xuy" secondAttribute="centerX" id="AQi-LO-dOK"/>
-                                                        <constraint firstItem="I2S-eE-BMq" firstAttribute="centerY" secondItem="s4o-Af-xuy" secondAttribute="centerY" id="xJ6-Z1-X8b"/>
+                                                        <constraint firstItem="3EQ-SY-Yrn" firstAttribute="centerY" secondItem="s4o-Af-xuy" secondAttribute="centerY" id="Crb-Vf-yw0"/>
+                                                        <constraint firstItem="3EQ-SY-Yrn" firstAttribute="centerX" secondItem="s4o-Af-xuy" secondAttribute="centerX" id="uza-bc-FLS"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="7"/>
@@ -642,7 +665,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="characterWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQX-Ef-nQk">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQX-Ef-nQk">
                                 <rect key="frame" x="75" y="426" width="274" height="210"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. ">
@@ -748,6 +771,7 @@
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
         <image name="menu" width="25" height="25"/>
         <image name="multiply" catalog="system" width="64" height="54"/>
+        <image name="pencil.circle" catalog="system" width="64" height="60"/>
         <image name="plus" catalog="system" width="64" height="56"/>
         <image name="star_arrow_down" width="38" height="25"/>
         <image name="star_arrow_up" width="38" height="23.5"/>
