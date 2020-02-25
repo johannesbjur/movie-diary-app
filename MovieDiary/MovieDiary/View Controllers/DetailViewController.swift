@@ -13,6 +13,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var ratingStars: [UIButton]!
     @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var movie: Movie?
     
@@ -21,28 +22,24 @@ class DetailViewController: UIViewController {
         
         if let movie = movie {
         
-            setData( withMovie: movie )
-        }
-    }
-    
-    func setData( withMovie movie: Movie ) {
-        
-        titleLabel.text     = movie.title
-        commentLabel.text   = movie.comment
-        
-        for star in ratingStars {
+            titleLabel.text     = movie.title
+            commentLabel.text   = movie.comment
+            dateLabel.text      = movie.date
             
-            if star.tag <= movie.rating {
+            for star in ratingStars {
                 
-                star.setBackgroundImage( UIImage.init( named: "full_star_colored" ), for: .normal )
-            }
-            else {
-                
-                star.setBackgroundImage( UIImage.init( named: "empty_star_colored" ), for: .normal )
+                if star.tag <= movie.rating {
+                    
+                    star.setBackgroundImage( UIImage.init( named: "full_star_colored" ), for: .normal )
+                }
+                else {
+                    
+                    star.setBackgroundImage( UIImage.init( named: "empty_star_colored" ), for: .normal )
+                }
             }
         }
     }
-    
 
+    
 
 }

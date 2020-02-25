@@ -41,7 +41,7 @@ class Movies {
         self.movies = []
     }
     
-//    save movies to database
+//    Saves movies to database
     func save()  {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -51,12 +51,48 @@ class Movies {
         
         for movie in movies {
             
-            moviesRef.addDocument( data: movie.toDict() )
+            if let movId = movie.fireStoreId {
+                
+                moviesRef.document( movId ).updateData(movie.toDict())
+            }
+            else {
+                
+                movie.fireStoreId = moviesRef.addDocument( data: movie.toDict() ).documentID
+            }
+            
         }
     }
     
-//    get movies from database with completion statement
-    func update( completion: @escaping () -> () ) {
+//    Deletes movie from database and movies array
+//    accepts completion handler used for updating tableview data
+    func delete( movie: Movie, completion: @escaping () -> () ) {
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        db = Firestore.firestore()
+        let moviesRef = db.collection( "users" ).document( uid ).collection( "movies" )
+        
+        moviesRef.whereField("title", isEqualTo: movie.title).getDocuments() { ( querySnapshot, error ) in
+            
+            guard let documents = querySnapshot?.documents else { return }
+            
+            for document in documents {
+                
+                document.reference.delete()
+            }
+            
+            if let index = self.movies.firstIndex( where: { $0.title == movie.title } ) {
+                
+                self.movies.remove(at: index)
+            }
+            
+            completion()
+        }
+    }
+    
+//    Gets movies from database with completion statement
+//    accepts completion handler used for updating tableview data
+    func getAll( completion: @escaping () -> () ) {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
@@ -65,7 +101,7 @@ class Movies {
         
         moviesRef.getDocuments() { ( querySnapshot, err ) in
             
-            guard let documents = querySnapshot?.documents else {return}
+            guard let documents = querySnapshot?.documents else { return }
             
             self.empty()
             

@@ -17,12 +17,15 @@ class CreateItemViewController: UIViewController {
     
     @IBOutlet var starsArray: [UIButton]!
     
-    let segToHomeId = "segToHome"
-    
     var db: Firestore!
     
     var rating_value: Int = 0
     var movies = Movies()
+    
+    let segToHomeId = "segToHome"
+    
+    var movieToSave: Movie?
+    var movieToEdit: Movie?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,30 +36,58 @@ class CreateItemViewController: UIViewController {
         
         setStyle( textInput: titleInput )
         setStyle( textInput: commentInput )
+        
+        titleInput.becomeFirstResponder()
+        
+        if let movieToEdit = movieToEdit {
+            
+            titleInput.text     = movieToEdit.title
+            commentInput.text   = movieToEdit.comment
+            self.rating_value   = movieToEdit.rating
+            ratingSetTo( value: movieToEdit.rating )
+        }
+        
     }
 
 //    Creates movie object from user input and sends to home screen
     @IBAction func savePressed(_ sender: UIButton) {
         
         guard let title     = titleInput.text else { return }
-        guard let comment   = commentInput.text else { return }
+        guard var comment   = commentInput.text else { return }
         
-        let movie = Movie( title: title, comment: comment, rating: self.rating_value )
+        comment = comment.prefix(1).uppercased() + comment.dropFirst()
+        
+        let movie = Movie( title: title.capitalized, comment: comment, rating: self.rating_value )
+        
+//        If movie is being edited save set firestore id
+//        else add to movieToSave for tableview animation
+        if let movieToEdit = movieToEdit {
+            
+            movie.fireStoreId = movieToEdit.fireStoreId
+        }
+        else {
+            
+            movieToSave = movie
+        }
         
         self.movies.add( movie: movie )
         self.movies.save()
         
-        dismiss( animated: true, completion: nil )
+        performSegue(withIdentifier: segToHomeId, sender: self)
     }
     
 //    Handles graphics for rating stars
     @IBAction func starPressed(_ sender: UIButton) {
         
         rating_value = sender.tag
+        ratingSetTo( value: sender.tag )        
+    }
+    
+    func ratingSetTo( value: Int ) {
         
         for star in starsArray {
             
-            if star.tag <= sender.tag {
+            if star.tag <= value {
                 star.setBackgroundImage(UIImage.init(named: "full_star_white"), for: .normal)
             }
             else {
@@ -64,8 +95,9 @@ class CreateItemViewController: UIViewController {
             }
         }
     }
+
     
-// TODO move to shared file / extension
+//    Sets custom style for text inputs
     func setStyle( textInput: UITextField ) {
         
         // Create bottom border

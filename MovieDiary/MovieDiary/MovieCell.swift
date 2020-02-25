@@ -12,11 +12,12 @@ class MovieCell: UITableViewCell {
 
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet var ratingStars: [UIButton]!
-
+    @IBOutlet weak var removeItemBackground: UIView!
+    
     
     func setData( withMovie movie: Movie ) {
         
-        self.movieTitle.text = movie.title.capitalized
+        self.movieTitle.text = movie.title
         
         for star in ratingStars {
             
@@ -31,6 +32,26 @@ class MovieCell: UITableViewCell {
         }
     }
     
+
+//    Adds blur effect for remove item background
+    func setStyle() {
+        
+        removeItemBackground.isHidden = false
+        removeItemBackground.alpha = 0
+        
+        if let blurLayer = removeItemBackground.viewWithTag( 100 ) {
+            blurLayer.removeFromSuperview()
+        }
+        
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.layer.cornerRadius = 7
+        blurEffectView.clipsToBounds = true
+        blurEffectView.frame = removeItemBackground.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.tag = 100
+        removeItemBackground.insertSubview(blurEffectView, at: 0)
+    }
     
     
 }
